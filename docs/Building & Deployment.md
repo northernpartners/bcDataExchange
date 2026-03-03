@@ -73,7 +73,7 @@ The extension will be installed automatically. This may take several minutes dep
 
 Once installed:
 1. Go to **Search** → Type "Web Services"
-2. Follow the [configuration guide](configuration.md) to publish the endpoints
+2. Follow the configuration guide to publish the endpoints
 
 ## Deploying to On-Premises
 
@@ -172,7 +172,7 @@ After deploying, verify the extension is working:
    - Verify status shows "Installed"
 
 2. **Test Web Services**
-   - Follow test procedures in the [configuration guide](configuration.md)
+   - Follow test procedures in the configuration guide
    - Make test API calls to both endpoints
 
 3. **Review Event Log**

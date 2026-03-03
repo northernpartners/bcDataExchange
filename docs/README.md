@@ -30,58 +30,50 @@ Both endpoints expose Business Central data in JSON format, enabling seamless in
 
 ---
 
-## Documentation Structure
+## FEATURES
 
-### [Features](features/dimension-api.md)
+### Customer Data API
+Query and filter Business Central customer records via OData V4. Supports filtering, sorting, and pagination with standard OData operators.
+- [Customer Data API](Customer%20Data%20API.md)
 
-#### Dimension Management API
-- RESTful endpoint for creating Business Central dimensions
-- Request/response formats with examples
-- Error handling and response codes
-- **[Learn more →](features/dimension-api.md)**
-
-#### Customer Data API
-- OData V4 endpoint for querying customers
-- Filtering, sorting, and pagination operations
-- Standard OData operators reference
-- **[Learn more →](features/customer-api.md)**
-
-### Setup & Configuration
-
-#### Web Services Configuration
-- Step-by-step setup in Business Central
-- User permissions and security
-- API endpoint verification
-- **[Learn more →](setup/configuration.md)**
-
-#### Building & Deployment
-- Building extension packages
-- Cloud and On-Premises deployment
-- Updating and rollback procedures
-- **[Learn more →](setup/deployment.md)**
-
-### Support
-
-#### Troubleshooting
-- Common issues and solutions
-- Authentication and authorization
-- Performance optimization tips
-- Event log diagnostics
-- **[Learn more →](troubleshooting.md)**
+### Dimension Management API
+Create Business Central dimensions and dimension values programmatically via REST/JSON. The API is idempotent and automatically skips existing values.
+- [Dimension Management API](Dimension%20Management%20API.md)
 
 ---
 
-## Quick Links
+## SETUP & CONFIGURATION
 
-- **[Dimension Management API](features/dimension-api.md)** - Create dimensions and values programmatically
-- **[Customer Data API](features/customer-api.md)** - Query customer records with filtering and sorting
-- **[Configuration Guide](setup/configuration.md)** - Set up web services in Business Central
-- **[Deployment](setup/deployment.md)** - Build and deploy the extension
-- **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
+### Web Services Configuration
+Step-by-step guide to configure web services in Business Central, set up user permissions, and verify API endpoints.
+- [Web Services Configuration](Web%20Services%20Configuration.md)
+
+### Building & Deployment
+Instructions for building the extension package and deploying to Business Central cloud and on-premises environments.
+- [Building & Deployment](Building%20%26%20Deployment.md)
 
 ---
 
-**Format:** GitBook Cloud-compatible documentation  
+## SUPPORT
+
+### Troubleshooting
+Common issues and solutions including API access problems, authentication errors, performance optimization, and event log diagnostics.
+- [Troubleshooting](Troubleshooting.md)
+
+---
+
+## Quick Start
+
+1. Deploy the extension to your Business Central environment
+2. Configure web services following the [Web Services Configuration](Web%20Services%20Configuration.md) guide
+3. Add API permissions to your integration user
+4. Start using the endpoints:
+   - **Create dimensions:** POST to the Dimension Management API
+   - **Query customers:** GET from the Customer Data API
+
+---
+
+**Format:** GitBook Cloud-compatible flat structure  
 **Version:** 1.0.0.0  
 **Publisher:** Northern Partners ApS  
 **Last Updated:** March 3, 2026
