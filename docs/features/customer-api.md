@@ -1,0 +1,166 @@
+# Customer Data API
+
+Query and filter Business Central customer records via a read-only OData V4 API. The endpoint exposes key customer fields and supports standard OData filtering, sorting, and pagination.
+
+## Endpoint Configuration
+
+**Web Service ID:** Query 50250 "Customers"  
+**Service Name:** `queryCustomers`  
+**HTTP Method:** GET  
+**Protocol:** OData V4  
+**Access Level:** Read-Only  
+**Authentication:** Business Central credentials required
+
+## Request Format
+
+**Base URL:**
+```
+[BC Environment]/ODataV4/Company('{company-id}')/customers
+```
+
+**Headers:**
+```
+Content-Type: application/json
+Authorization: Bearer [auth-token]
+```
+
+## Exposed Fields
+
+| AL Field Name | API Field Name | Data Type | Length | Description |
+|---------------|----------------|-----------|--------|-------------|
+| No. | customerNo | Code | 20 | Customer identifier / account number |
+| Name | customerName | Text | 100 | Customer display name |
+| VAT Registration No. | vatRegistrationNumber | Text | 20 | Customer VAT registration number |
+| Registration Number | registrationNumber | Text | 20 | Company registration number |
+
+## Query Operations
+
+### 1. List All Customers
+
+**Request:**
+```
+GET /ODataV4/Company('{company-id}')/customers
+```
+
+**Response:**
+```json
+{
+  "value": [
+    {
+      "customerNo": "CUST-001",
+      "customerName": "ABC Corporation",
+      "vatRegistrationNumber": "DK12345678",
+      "registrationNumber": "REG123456"
+    },
+    {
+      "customerNo": "CUST-002",
+      "customerName": "XYZ International",
+      "vatRegistrationNumber": "DK87654321",
+      "registrationNumber": "REG654321"
+    }
+  ]
+}
+```
+
+### 2. Filter by Customer No. (Exact Match)
+
+**Request:**
+```
+GET /ODataV4/Company('{company-id}')/customers?$filter=customerNo eq 'CUST-001'
+```
+
+**Response:**
+```json
+{
+  "value": [
+    {
+      "customerNo": "CUST-001",
+      "customerName": "ABC Corporation",
+      "vatRegistrationNumber": "DK12345678",
+      "registrationNumber": "REG123456"
+    }
+  ]
+}
+```
+
+### 3. Filter by Customer Name (Substring Match)
+
+**Request:**
+```
+GET /ODataV4/Company('{company-id}')/customers?$filter=substringof('ABC', customerName)
+```
+
+**Response:**
+```json
+{
+  "value": [
+    {
+      "customerNo": "CUST-001",
+      "customerName": "ABC Corporation",
+      "vatRegistrationNumber": "DK12345678",
+      "registrationNumber": "REG123456"
+    }
+  ]
+}
+```
+
+### 4. Filter by VAT Registration Number
+
+**Request:**
+```
+GET /ODataV4/Company('{company-id}')/customers?$filter=vatRegistrationNumber eq 'DK12345678'
+```
+
+### 5. Filter by Registration Number
+
+**Request:**
+```
+GET /ODataV4/Company('{company-id}')/customers?$filter=registrationNumber eq 'REG123456'
+```
+
+### 6. Pagination with $top and $skip
+
+**Request (Get 50 records, skip first 100):**
+```
+GET /ODataV4/Company('{company-id}')/customers?$top=50&$skip=100
+```
+
+### 7. Sorting and Ordering
+
+**Request (Sort by customer name, ascending):**
+```
+GET /ODataV4/Company('{company-id}')/customers?$orderby=customerName asc
+```
+
+**Request (Sort by customer name, descending):**
+```
+GET /ODataV4/Company('{company-id}')/customers?$orderby=customerName desc
+```
+
+### 8. Combined Filter, Sort, and Pagination
+
+**Request:**
+```
+GET /ODataV4/Company('{company-id}')/customers?$filter=substringof('Corp', customerName)&$orderby=customerName asc&$top=25&$skip=0
+```
+
+## OData Standard Operators
+
+| Operator | Syntax | Example | Description |
+|----------|--------|---------|-------------|
+| Equality | `eq` | `customerNo eq 'CUST-001'` | Exact match |
+| Inequality | `ne` | `customerNo ne 'CUST-001'` | Not equal |
+| Substring | `substringof` | `substringof('ABC', customerName)` | Contains substring |
+| Starts With | `startswith` | `startswith(customerName, 'ABC')` | Field starts with value |
+| Ends With | `endswith` | `endswith(customerName, 'Corp')` | Field ends with value |
+| Sorting | `$orderby` | `$orderby=customerName asc` | Sort results (asc/desc) |
+| Pagination | `$top` | `$top=50` | Limit result count |
+| — | `$skip` | `$skip=100` | Skip first N records |
+
+## Implementation Details
+
+- **Read-Only Access:** Query is configured with `DataAccessIntent = ReadOnly` for security
+- **Automatic OData Exposure:** Query objects are automatically exposed as OData endpoints; no additional configuration required
+- **Filter Fields:** All exposed columns have associated filters for flexible searching
+- **Performance:** Query designed for efficient filtering on BC cloud environments
+- **Standard OData V4:** Implementation follows OData V4 specification for broad compatibility
