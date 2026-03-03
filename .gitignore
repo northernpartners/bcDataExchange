@@ -11,6 +11,7 @@ briefing/
 .vscode/launch.json
 .vscode/tasks.json
 .vscode/settings.json
+.vscode/rad.json
 
 # VS Code workspace & extensions
 .history/
