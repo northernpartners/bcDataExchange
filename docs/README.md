@@ -30,17 +30,58 @@ Both endpoints expose Business Central data in JSON format, enabling seamless in
 
 ---
 
+## Documentation Structure
+
+### [Features](features/dimension-api.md)
+
+#### Dimension Management API
+- RESTful endpoint for creating Business Central dimensions
+- Request/response formats with examples
+- Error handling and response codes
+- **[Learn more →](features/dimension-api.md)**
+
+#### Customer Data API
+- OData V4 endpoint for querying customers
+- Filtering, sorting, and pagination operations
+- Standard OData operators reference
+- **[Learn more →](features/customer-api.md)**
+
+### Setup & Configuration
+
+#### Web Services Configuration
+- Step-by-step setup in Business Central
+- User permissions and security
+- API endpoint verification
+- **[Learn more →](setup/configuration.md)**
+
+#### Building & Deployment
+- Building extension packages
+- Cloud and On-Premises deployment
+- Updating and rollback procedures
+- **[Learn more →](setup/deployment.md)**
+
+### Support
+
+#### Troubleshooting
+- Common issues and solutions
+- Authentication and authorization
+- Performance optimization tips
+- Event log diagnostics
+- **[Learn more →](troubleshooting.md)**
+
+---
+
 ## Quick Links
 
 - **[Dimension Management API](features/dimension-api.md)** - Create dimensions and values programmatically
 - **[Customer Data API](features/customer-api.md)** - Query customer records with filtering and sorting
 - **[Configuration Guide](setup/configuration.md)** - Set up web services in Business Central
 - **[Deployment](setup/deployment.md)** - Build and deploy the extension
-- **[Architecture](architecture/overview.md)** - System design and data flow
 - **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
 
 ---
 
-**Last Updated:** March 3, 2026  
+**Format:** GitBook Cloud-compatible documentation  
 **Version:** 1.0.0.0  
-**Publisher:** Northern Partners ApS
+**Publisher:** Northern Partners ApS  
+**Last Updated:** March 3, 2026
