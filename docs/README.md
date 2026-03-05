@@ -6,7 +6,7 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.1
+**Latest Version:** 1.0.0.5
 
 ---
 
@@ -15,9 +15,8 @@ A unified Business Central AL extension exposing data via web service APIs for e
 The DataExchange extension combines multiple data integration capabilities into a single, cohesive package:
 
 - **Dimension Management API** - Create dimensions and dimension values via CodeUnit POST endpoint
-- **Customer Data API** - Query and filter customer records via OData GET endpoint
-
-Both endpoints expose Business Central data in JSON format, enabling seamless integration with external systems.
+- **Dimensions Query API** - Query and filter dimensions via OData GET endpoint
+- **Customer Data APIs** - Query and filter customer records via OData GET endpoints
 
 ---
 
@@ -28,6 +27,8 @@ Both endpoints expose Business Central data in JSON format, enabling seamless in
 | Codeunit | 50151 | Dimension Handler | createDimensions | POST | REST/JSON | Create dimensions and dimension values |
 | Query | 50250 | Customers | queryCustomers | GET | OData V4 | Query and filter customer data (core fields) |
 | Query | 50251 | Customer Details | customerDetails | GET | OData V4 | Query comprehensive customer data with address/contact/invoicing details |
+| Query | 50252 | Dimensions | dimensions | GET | OData V4 | Query dimension groups/codes |
+| Query | 50253 | Dimension Values | dimensionValues | GET | OData V4 | Query dimension values filtered by dimension group |
 
 ---
 
@@ -41,9 +42,14 @@ Query and filter Business Central customer records via OData V4. Two query endpo
 Both support filtering, sorting, and pagination with standard OData operators.
 - [Customer Data API](Customer%20Data%20API.md)
 
-### Dimension Management API
-Create Business Central dimensions and dimension values programmatically via REST/JSON. The API is idempotent and automatically skips existing values.
+### Dimension Management APIs
+Create Business Central dimensions and dimension values programmatically via REST/JSON. Query and filter dimension groups and their values via OData with support for filtering, sorting, and pagination.
+- **Create Dimensions** (50151): POST endpoint for creating new dimensions and values
+- **Query Dimensions** (50252): GET endpoint for listing dimension groups/codes
+- **Query Dimension Values** (50253): GET endpoint for listing dimension values within dimension groups
 - [Dimension Management API](Dimension%20Management%20API.md)
+- [Dimensions Query API](Dimensions%20Query%20API.md)
+- [Dimension Values Query API](Dimension%20Values%20Query%20API.md)
 
 ---
 
@@ -79,6 +85,6 @@ Common issues and solutions including API access problems, authentication errors
 ---
 
 **Format:** GitBook Cloud-compatible flat structure  
-**Version:** 1.0.0.1  
+**Version:** 1.0.0.2  
 **Publisher:** Northern Partners ApS  
 **Last Updated:** March 5, 2026

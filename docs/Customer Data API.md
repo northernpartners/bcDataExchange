@@ -91,7 +91,7 @@ GET /ODataV4/Company('{company-id}')/customers?$filter=customerNo eq 'CUST-001'
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=substringof('ABC', customerName)
+GET /ODataV4/Company('{company-id}')/customers?$filter=contains(customerName, 'ABC')
 ```
 
 **Response:**
@@ -145,7 +145,7 @@ GET /ODataV4/Company('{company-id}')/customers?$orderby=customerName desc
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=substringof('Corp', customerName)&$orderby=customerName asc&$top=25&$skip=0
+GET /ODataV4/Company('{company-id}')/customers?$filter=contains(customerName, 'Corp')&$orderby=customerName asc&$top=25&$skip=0
 ```
 
 ## OData Standard Operators
@@ -154,7 +154,7 @@ GET /ODataV4/Company('{company-id}')/customers?$filter=substringof('Corp', custo
 |----------|--------|---------|-------------|
 | Equality | `eq` | `customerNo eq 'CUST-001'` | Exact match |
 | Inequality | `ne` | `customerNo ne 'CUST-001'` | Not equal |
-| Substring | `substringof` | `substringof('ABC', customerName)` | Contains substring |
+| Substring | `contains` | `contains(customerName, 'ABC')` | Contains substring |
 | Starts With | `startswith` | `startswith(customerName, 'ABC')` | Field starts with value |
 | Ends With | `endswith` | `endswith(customerName, 'Corp')` | Field ends with value |
 | Sorting | `$orderby` | `$orderby=customerName asc` | Sort results (asc/desc) |
@@ -272,7 +272,7 @@ GET /ODataV4/Company('{company-id}')/customerDetails?$filter=customerNo eq 'CUST
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=substringof('Kintech', customerName)
+GET /ODataV4/Company('{company-id}')/customerDetails?$filter=contains(customerName, 'Kintech')
 ```
 
 ### 3. Filter by Country Code

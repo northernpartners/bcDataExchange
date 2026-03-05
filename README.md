@@ -6,19 +6,21 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.1
+**Latest Version:** 1.0.0.5
 
 ---
 
 ## Quick Start
 
-The DataExchange extension exposes two web service endpoints:
+The DataExchange extension exposes five web service endpoints:
 
 | Object | ID | Service Name | Method | Purpose |
-|--------|----|----|--------|---------|
+|--------|----|----|--------|----------|
 | Codeunit | 50151 | createDimensions | POST | Create dimensions and dimension values |
 | Query | 50250 | queryCustomers | GET | Query and filter customer data (core fields) |
 | Query | 50251 | customerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
+| Query | 50252 | dimensions | GET | Query dimension groups/codes |
+| Query | 50253 | dimensionValues | GET | Query dimension values filtered by dimension group |
 
 ### Building the Extension
 
@@ -33,6 +35,8 @@ The DataExchange extension exposes two web service endpoints:
    - **createDimensions:** Codeunit 50151 "Dimension Handler"
    - **queryCustomers:** Query 50250 "Customers"
    - **customerDetails:** Query 50251 "Customer Details"
+   - **dimensions:** Query 50252 "Dimensions"
+   - **dimensionValues:** Query 50253 "Dimension Values"
 3. Publish and test
 
 ---
@@ -54,7 +58,9 @@ DataExchange/
 │   └── DimensionHelpers.al       # Helper functions (50150)
 ├── queries/
 │   ├── CustomersQuery.al         # OData endpoint (50250)
-│   └── CustomerDetailsQuery.al   # OData endpoint (50251)
+│   ├── CustomerDetailsQuery.al   # OData endpoint (50251)
+│   ├── DimensionsQuery.al        # OData endpoint (50252)
+│   └── DimensionValuesQuery.al   # OData endpoint (50253)
 └── .vscode/                      # VS Code configuration
 ```
 

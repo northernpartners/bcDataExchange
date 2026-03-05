@@ -212,7 +212,7 @@ Common issues and their solutions for the DataExchange extension.
 ```
 ?$filter=customerNo eq 'CUST-001'
 
-?$filter=substringof('ABC', customerName)
+?$filter=contains(customerName, 'ABC')
 
 ?$filter=startswith(customerName, 'ABC')
 
@@ -325,4 +325,4 @@ This log shows:
 ---
 
 **Last Updated:** March 3, 2026  
-**Extension Version:** 1.0.0.1
+**Extension Version:** 1.0.0.2
