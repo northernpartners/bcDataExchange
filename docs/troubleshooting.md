@@ -196,6 +196,7 @@ Common issues and their solutions for the DataExchange extension.
 4. Valid field names for filtering:
    - `customerNo`
    - `customerName`
+   - `lastDateModified`
    - `vatRegistrationNumber`
    - `registrationNumber`
 
@@ -324,4 +325,4 @@ This log shows:
 ---
 
 **Last Updated:** March 3, 2026  
-**Extension Version:** 1.0.0.0
+**Extension Version:** 1.0.0.1

@@ -14,6 +14,10 @@ query 50250 "Customers"
             {
                 Caption = 'Customer Name';
             }
+            column(lastDateModified; "Last Date Modified")
+            {
+                Caption = 'Last Date Modified';
+            }
             column(vatRegistrationNumber; "VAT Registration No.")
             {
                 Caption = 'VAT Registration Number';
@@ -21,19 +25,6 @@ query 50250 "Customers"
             column(registrationNumber; "Registration Number")
             {
                 Caption = 'Registration Number';
-            }
-
-            filter(noFilter; "No.")
-            {
-            }
-            filter(nameFilter; Name)
-            {
-            }
-            filter(vatFilter; "VAT Registration No.")
-            {
-            }
-            filter(registrationFilter; "Registration Number")
-            {
             }
         }
     }

@@ -6,7 +6,7 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.0
+**Latest Version:** 1.0.0.1
 
 ---
 
@@ -26,14 +26,19 @@ Both endpoints expose Business Central data in JSON format, enabling seamless in
 | Object Type | Object ID | Object Name | Service Name | HTTP Method | Protocol | Description |
 |-------------|-----------|-------------|--------------|------------|----------|-------------|
 | Codeunit | 50151 | Dimension Handler | createDimensions | POST | REST/JSON | Create dimensions and dimension values |
-| Query | 50250 | Customers | queryCustomers | GET | OData V4 | Query and filter customer data |
+| Query | 50250 | Customers | queryCustomers | GET | OData V4 | Query and filter customer data (core fields) |
+| Query | 50251 | Customer Details | customerDetails | GET | OData V4 | Query comprehensive customer data with address/contact/invoicing details |
 
 ---
 
 ## FEATURES
 
-### Customer Data API
-Query and filter Business Central customer records via OData V4. Supports filtering, sorting, and pagination with standard OData operators.
+### Customer Data APIs
+Query and filter Business Central customer records via OData V4. Two query endpoints provide different levels of detail:
+- **Customers Query** (50250): Core customer fields with fast filtering
+- **Customer Details Query** (50251): Comprehensive customer data including address, contact, invoicing, and payment information
+
+Both support filtering, sorting, and pagination with standard OData operators.
 - [Customer Data API](Customer%20Data%20API.md)
 
 ### Dimension Management API
@@ -74,6 +79,6 @@ Common issues and solutions including API access problems, authentication errors
 ---
 
 **Format:** GitBook Cloud-compatible flat structure  
-**Version:** 1.0.0.0  
+**Version:** 1.0.0.1  
 **Publisher:** Northern Partners ApS  
-**Last Updated:** March 3, 2026
+**Last Updated:** March 5, 2026
