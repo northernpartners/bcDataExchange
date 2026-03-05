@@ -228,7 +228,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 ### Payment Information
 
 | AL Field Name | API Field Name | Data Type | Description |
-|---------------|----------------|-----------|-------------||
+|---------------|----------------|-----------|-------------|
 | Payment Terms Code | paymentTermsCode | Code[10] | Default payment terms for customer |
 
 ## Query Operations
@@ -237,7 +237,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=customerNo eq 'C00630'
+GET /ODataV4/Company('{company-id}')/customerDetails?$filter=customerNo eq 'CUST-9001'
 ```
 
 **Response:**
@@ -245,22 +245,22 @@ GET /ODataV4/Company('{company-id}')/customerDetails?$filter=customerNo eq 'C006
 {
   "value": [
     {
-      "customerNo": "C00630",
-      "customerName": "Kintech Recruitment Ltd.",
+      "customerNo": "CUST-9001",
+      "customerName": "Example Company Ltd.",
       "lastDateModified": "2026-03-05T10:30:00Z",
       "balance": 15000.00,
-      "address": "123 Business Park",
-      "address2": "Suite 200",
-      "countryCode": "GB",
-      "city": "London",
-      "postCode": "SW1A 1AA",
-      "phoneNo": "+44 20 7946 0958",
-      "mobilePhoneNo": "+44 7700 900123",
-      "email": "info@kintech.com",
+      "address": "123 Main Street",
+      "address2": "Suite 100",
+      "countryCode": "US",
+      "city": "New York",
+      "postCode": "10001",
+      "phoneNo": "+1 212 555 0100",
+      "mobilePhoneNo": "+1 212 555 0101",
+      "email": "contact@example.com",
       "languageCode": "ENG",
-      "vatRegistrationNo": "GB927520033",
-      "registrationNo": "09876543",
-      "currencyCode": "GBP",
+      "vatRegistrationNo": "US12345678",
+      "registrationNo": "REG123456",
+      "currencyCode": "USD",
       "pricesIncludingVAT": false,
       "paymentTermsCode": "NET30"
     }
