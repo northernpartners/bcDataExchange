@@ -6,7 +6,7 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.5
+**Latest Version:** 1.0.0.6
 
 ---
 
@@ -17,6 +17,7 @@ The DataExchange extension combines multiple data integration capabilities into 
 - **Dimension Management API** - Create dimensions and dimension values via CodeUnit POST endpoint
 - **Dimensions Query API** - Query and filter dimensions via OData GET endpoint
 - **Customer Data APIs** - Query and filter customer records via OData GET endpoints
+- **Sales Invoice APIs** - Query draft and posted sales invoices via OData GET endpoints
 
 ---
 
@@ -29,6 +30,8 @@ The DataExchange extension combines multiple data integration capabilities into 
 | Query | 50251 | Customer Details | customerDetails | GET | OData V4 | Query comprehensive customer data with address/contact/invoicing details |
 | Query | 50252 | Dimensions | dimensions | GET | OData V4 | Query dimension groups/codes |
 | Query | 50253 | Dimension Values | dimensionValues | GET | OData V4 | Query dimension values filtered by dimension group |
+| Query | 50254 | Draft Invoices | draftInvoices | GET | OData V4 | Query draft sales invoices |
+| Query | 50255 | Posted Invoices | postedInvoices | GET | OData V4 | Query posted sales invoices |
 
 ---
 
@@ -50,6 +53,11 @@ Create Business Central dimensions and dimension values programmatically via RES
 - [Dimension Management API](Dimension%20Management%20API.md)
 - [Dimensions Query API](Dimensions%20Query%20API.md)
 - [Dimension Values Query API](Dimension%20Values%20Query%20API.md)
+
+### Sales Invoice APIs
+Query draft and posted sales invoices via OData V4. Two query endpoints separate unposted (draft) invoices from posted invoices.
+- **Draft Invoices** (50254): GET endpoint for querying unposted sales invoices with status and document type filters
+- **Posted Invoices** (50255): GET endpoint for querying posted sales invoices
 
 ---
 
@@ -85,6 +93,6 @@ Common issues and solutions including API access problems, authentication errors
 ---
 
 **Format:** GitBook Cloud-compatible flat structure  
-**Version:** 1.0.0.2  
+**Version:** 1.0.0.6  
 **Publisher:** Northern Partners ApS  
-**Last Updated:** March 5, 2026
+**Last Updated:** March 9, 2026

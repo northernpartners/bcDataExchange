@@ -6,13 +6,13 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.5
+**Latest Version:** 1.0.0.6
 
 ---
 
 ## Quick Start
 
-The DataExchange extension exposes five web service endpoints:
+The DataExchange extension exposes seven web service endpoints:
 
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
@@ -21,6 +21,8 @@ The DataExchange extension exposes five web service endpoints:
 | Query | 50251 | customerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
 | Query | 50252 | dimensions | GET | Query dimension groups/codes |
 | Query | 50253 | dimensionValues | GET | Query dimension values filtered by dimension group |
+| Query | 50254 | draftInvoices | GET | Query draft sales invoices |
+| Query | 50255 | postedInvoices | GET | Query posted sales invoices |
 
 ### Building the Extension
 
@@ -37,6 +39,8 @@ The DataExchange extension exposes five web service endpoints:
    - **customerDetails:** Query 50251 "Customer Details"
    - **dimensions:** Query 50252 "Dimensions"
    - **dimensionValues:** Query 50253 "Dimension Values"
+   - **draftInvoices:** Query 50254 "Draft Invoices"
+   - **postedInvoices:** Query 50255 "Posted Invoices"
 3. Publish and test
 
 ---
@@ -60,11 +64,13 @@ DataExchange/
 │   ├── CustomersQuery.al         # OData endpoint (50250)
 │   ├── CustomerDetailsQuery.al   # OData endpoint (50251)
 │   ├── DimensionsQuery.al        # OData endpoint (50252)
-│   └── DimensionValuesQuery.al   # OData endpoint (50253)
+│   ├── DimensionValuesQuery.al   # OData endpoint (50253)
+│   ├── DraftInvoicesQuery.al     # OData endpoint (50254)
+│   └── PostedInvoicesQuery.al    # OData endpoint (50255)
 └── .vscode/                      # VS Code configuration
 ```
 
 ---
 
-**Last Updated:** March 5, 2026  
+**Last Updated:** March 9, 2026  
 **Published by:** Northern Partners ApS
