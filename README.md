@@ -6,17 +6,18 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.6
+**Latest Version:** 1.0.0.7
 
 ---
 
 ## Quick Start
 
-The DataExchange extension exposes seven web service endpoints:
+The DataExchange extension exposes eight web service endpoints:
 
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
 | Codeunit | 50151 | createDimensions | POST | Create dimensions and dimension values |
+| Codeunit | 50152 | processInvoice | POST | Sales invoice operations (details, create) |
 | Query | 50250 | queryCustomers | GET | Query and filter customer data (core fields) |
 | Query | 50251 | customerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
 | Query | 50252 | dimensions | GET | Query dimension groups/codes |
@@ -35,6 +36,7 @@ The DataExchange extension exposes seven web service endpoints:
 1. Search "Web Services" in Business Central
 2. Add new services:
    - **createDimensions:** Codeunit 50151 "Dimension Handler"
+   - **processInvoice:** Codeunit 50152 "Sales Invoice Handler"
    - **queryCustomers:** Query 50250 "Customers"
    - **customerDetails:** Query 50251 "Customer Details"
    - **dimensions:** Query 50252 "Dimensions"
@@ -59,7 +61,9 @@ DataExchange/
 ├── README.md                     # This file
 ├── codeunits/
 │   ├── DimensionHandler.al       # REST API (50151)
-│   └── DimensionHelpers.al       # Helper functions (50150)
+│   ├── DimensionHelpers.al       # Helper functions (50150)
+│   ├── SalesInvoiceHandler.al    # REST API (50152)
+│   └── SalesInvoiceHelpers.al    # Helper functions (50153)
 ├── queries/
 │   ├── CustomersQuery.al         # OData endpoint (50250)
 │   ├── CustomerDetailsQuery.al   # OData endpoint (50251)
