@@ -318,6 +318,6 @@ All actions return standardized error responses:
 
 ## Related Endpoints
 
-- **Draft Invoices Query (50254):** List/filter draft invoices via OData
-- **Posted Invoices Query (50255):** List/filter posted invoices via OData
+- **[Sales Invoice Draft Query API](Sales%20Invoice%20Draft%20Query%20API.md)** (50254): List/filter draft invoices via OData
+- **[Sales Invoice Posted Query API](Sales%20Invoice%20Posted%20Query%20API.md)** (50255): List/filter posted invoices via OData
 - **Dimension Management API (50151):** Create dimension codes and values

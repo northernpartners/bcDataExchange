@@ -61,8 +61,8 @@ Query draft and posted sales invoices via OData V4. Two query endpoints separate
 - **Draft Invoices** (50254): GET endpoint for querying unposted sales invoices with status and document type filters
 - **Posted Invoices** (50255): GET endpoint for querying posted sales invoices
 - [Sales Invoice API](Sales%20Invoice%20API.md)
-- [Draft Invoices Query API](Draft%20Invoices%20Query%20API.md)
-- [Posted Invoices Query API](Posted%20Invoices%20Query%20API.md)
+- [Sales Invoice Draft Query API](Sales%20Invoice%20Draft%20Query%20API.md)
+- [Sales Invoice Posted Query API](Sales%20Invoice%20Posted%20Query%20API.md)
 
 ---
 

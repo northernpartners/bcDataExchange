@@ -2,105 +2,57 @@
 
 Configure the DataExchange extension web services in Business Central to enable API access.
 
-## Setup in Business Central
+## Setup
 
-### 1. Open Web Services Administration
+1. Go to **Search** → Type **"Web Services"** → Press Enter
+2. For each service below, click **+ New**, fill in the fields, set **Publish** to `Yes`, and save
 
-**Method 1: Via Search**
-- Go to **Search** → Type "Web Services"
-- Press Enter
+| Object Type | Object ID | Object Name | Service Name |
+|-------------|-----------|-------------|--------------|
+| Codeunit | 50151 | Dimension Handler | createDimensions |
+| Codeunit | 50152 | Sales Invoice Handler | processInvoice |
+| Query | 50250 | Customers | queryCustomers |
+| Query | 50251 | Customer Details | customerDetails |
+| Query | 50252 | Dimensions | dimensions |
+| Query | 50253 | Dimension Values | dimensionValues |
+| Query | 50254 | Draft Invoices | draftInvoices |
+| Query | 50255 | Posted Invoices | postedInvoices |
 
-**Method 2: Via Settings**
-- Go to **Settings** → **Setup** → **Web Services**
+## Endpoint URLs
 
-### 2. Configure Dimension Creation (CodeUnit 50151)
+After publishing, access the services at:
 
-1. Click **+ New** to add a new web service
-2. Fill in the following fields:
-   - **Object Type:** `CodeUnit`
-   - **Object ID:** `50151`
-   - **Object Name:** `Dimension Handler`
-   - **Service Name:** `createDimensions`
-3. Set **Publish** to `Yes`
-4. Click **Save**
+| Type | URL Pattern |
+|------|-------------|
+| Codeunit (POST) | `https://{environment}.dynamics.com/api/businesses({company-id})/codeunits/{serviceName}` |
+| Query (GET) | `https://{environment}.dynamics.com/ODataV4/Company('{company-name}')/{serviceName}` |
 
-### 3. Configure Customer Query (Query 50250)
+Replace `{environment}`, `{company-id}`, and `{company-name}` with your Business Central environment details.
 
-1. Click **+ New** to add a new web service
-2. Fill in the following fields:
-   - **Object Type:** `Query`
-   - **Object ID:** `50250`
-   - **Object Name:** `Customers`
-   - **Service Name:** `queryCustomers`
-3. Set **Publish** to `Yes`
-4. Click **Save**
+## Authentication
 
-### 4. Access the Services
+All endpoints require Business Central credentials:
 
-After publishing, you can access the web services using the URLs shown in the Web Services list:
-
-- **Dimension API:** `[BC URL]/api/businesses([company-id])/codeunits/createDimensions`
-- **Customer API:** `[BC URL]/ODataV4/Company('{company-id}')/customers`
-
-Replace `[BC URL]`, `[company-id]`, and `{company-id}` with your actual Business Central environment details.
-
-## API Authentication
-
-All endpoints require Business Central user credentials:
-
-- **Method:** Basic Authentication or OAuth 2.0
-- **User:** BC user account with appropriate permissions
-- **Access Control:** Managed through Business Central security and permission sets
-
-### Required Permissions
-
-| Feature | Object | Permission | Description |
-|---------|--------|-----------|-------------|
-| Dimension API | Table 120 "Dimension" | `Modify` | Required to create dimensions and values |
-| Customer API | Table 18 "Customer" | `Read` | Required to query customer data |
-
-### Setting Up User Permissions
-
-1. **Open User Security**
-   - Go to **Search** → Type "Users"
-   - Select the user account
-
-2. **Assign Permission Sets**
-   - Click **Manage Permission Sets**
-   - Add appropriate permission sets for your integration user
-   - For API access, ensure the user has:
-     - `Read` permission on Table 18 (Customer)
-     - `Modify` permission on Table 120 (Dimension)
-
-3. **Verify Permissions**
-   - Test the API endpoints to confirm access
-   - Check Business Central Event Log for access issues
-
-## Network & Security Considerations
-
-- **HTTPS:** All API connections use HTTPS encryption (automatic in Business Central cloud)
-- **Rate Limiting:** Business Central enforces standard API rate limits
-- **Session Management:** Authentication tokens have limited lifetime; requests may need re-authentication
-- **IP Allowlisting:** Configure as needed in your Business Central setup
+- **OAuth 2.0** (recommended) or **Basic Authentication**
+- User must have appropriate BC permission sets for the underlying tables
+- All connections use HTTPS (automatic in Business Central cloud)
 
 ## Verification
 
-### Test Dimension API
-
+Test a Codeunit endpoint:
 ```bash
 curl -X POST \
-  'https://[environment].dynamics.com/api/businesses([id])/codeunits/createDimensions' \
+  'https://{environment}.dynamics.com/api/businesses({id})/codeunits/createDimensions' \
   -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer [token]' \
+  -H 'Authorization: Bearer {token}' \
   -d '{"name": "TEST", "values": [{"code": "V1"}]}'
 ```
 
-### Test Customer API
-
+Test a Query endpoint:
 ```bash
 curl -X GET \
-  'https://[environment].dynamics.com/ODataV4/Company('\''[id]'\'')/customers' \
-  -H 'Authorization: Bearer [token]'
+  'https://{environment}.dynamics.com/ODataV4/Company('\''{company-name}'\'')/queryCustomers?$top=1' \
+  -H 'Authorization: Bearer {token}'
 ```
 
-Both requests should return success responses without errors.
+Both should return JSON responses without errors.
