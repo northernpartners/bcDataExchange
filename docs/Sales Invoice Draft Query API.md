@@ -1,4 +1,4 @@
-# Draft Invoices Query API
+# Sales Invoices Draft Query API
 
 Query unposted (draft) sales invoices from Business Central via a read-only OData V4 API. Filter by document type and status to retrieve specific subsets of draft invoices.
 

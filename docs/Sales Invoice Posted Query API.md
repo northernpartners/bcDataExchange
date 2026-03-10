@@ -1,4 +1,4 @@
-# Posted Invoices Query API
+# Sales Invoices Posted Query API
 
 Query posted (finalized) sales invoices from Business Central via a read-only OData V4 API.
 
