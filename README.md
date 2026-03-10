@@ -6,7 +6,7 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.7
+**Latest Version:** 1.0.0.13
 
 ---
 
@@ -17,7 +17,7 @@ The DataExchange extension exposes eight web service endpoints:
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
 | Codeunit | 50151 | createDimensions | POST | Create dimensions and dimension values |
-| Codeunit | 50152 | processInvoice | POST | Sales invoice operations (details, create) |
+| Codeunit | 50152 | processInvoice | POST | Sales invoice operations (details, create with lines & dimensions) |
 | Query | 50250 | queryCustomers | GET | Query and filter customer data (core fields) |
 | Query | 50251 | customerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
 | Query | 50252 | dimensions | GET | Query dimension groups/codes |
@@ -76,5 +76,5 @@ DataExchange/
 
 ---
 
-**Last Updated:** March 9, 2026  
+**Last Updated:** March 10, 2026  
 **Published by:** Northern Partners ApS

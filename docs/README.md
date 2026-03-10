@@ -2,7 +2,7 @@
 
 A Business Central AL extension exposing data via web service APIs for external system integration.
 
-**Publisher:** Northern Partners ApS | **Platform:** Business Central 23.0+ | **Version:** 1.0.0.7
+**Publisher:** Northern Partners ApS | **Platform:** Business Central 23.0+ | **Version:** 1.0.0.13
 
 ---
 
@@ -17,7 +17,7 @@ A Business Central AL extension exposing data via web service APIs for external 
 - [Dimension Values Query API](Dimension%20Values%20Query%20API.md) — Query dimension values via OData V4
 
 ### Sales Invoices
-- [Sales Invoice API](Sales%20Invoice%20API.md) — Invoice operations (details, create) via REST/JSON
+- [Sales Invoice API](Sales%20Invoice%20API.md) — Invoice operations (details, create with lines & dimensions) via REST/JSON
 - [Sales Invoice Draft Query API](Sales%20Invoice%20Draft%20Query%20API.md) — Query draft invoices via OData V4
 - [Sales Invoice Posted Query API](Sales%20Invoice%20Posted%20Query%20API.md) — Query posted invoices via OData V4
 

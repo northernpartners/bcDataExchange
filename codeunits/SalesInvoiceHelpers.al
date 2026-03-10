@@ -1,7 +1,8 @@
 codeunit 50153 "Sales Invoice Helpers"
 {
     Permissions =
-        tabledata "Dimension Set Entry" = rimd;
+        tabledata "Dimension Set Entry" = rimd,
+        tabledata Dimension = r;
 
     /// <summary>
     /// Formats a date in ISO 8601 format (YYYY-MM-DD).
@@ -79,7 +80,7 @@ codeunit 50153 "Sales Invoice Helpers"
         Result: JsonObject;
         OutTxt: Text;
     begin
-        Result.Add('id', SalesHeader."No.");
+        Result.Add('systemId', Format(SalesHeader.SystemId, 0, 4).ToLower());
         Result.Add('invoiceNumber', SalesHeader."No.");
         Result.Add('customerName', SalesHeader."Bill-to Name");
         Result.Add('customerId', SalesHeader."Bill-to Customer No.");
@@ -100,6 +101,7 @@ codeunit 50153 "Sales Invoice Helpers"
         SalesLine.SetRange("Document No.", SalesHeader."No.");
         if SalesLine.FindSet() then
             repeat
+                LineObject.Add('systemId', Format(SalesLine.SystemId, 0, 4).ToLower());
                 LineObject.Add('lineNumber', SalesLine."Line No.");
                 LineObject.Add('lineType', Format(SalesLine.Type));
                 LineObject.Add('itemNumber', SalesLine."No.");
@@ -138,7 +140,7 @@ codeunit 50153 "Sales Invoice Helpers"
         Result: JsonObject;
         OutTxt: Text;
     begin
-        Result.Add('id', SalesInvoiceHeader."No.");
+        Result.Add('systemId', Format(SalesInvoiceHeader.SystemId, 0, 4).ToLower());
         Result.Add('invoiceNumber', SalesInvoiceHeader."No.");
         Result.Add('customerName', SalesInvoiceHeader."Bill-to Name");
         Result.Add('customerId', SalesInvoiceHeader."Bill-to Customer No.");
@@ -158,6 +160,7 @@ codeunit 50153 "Sales Invoice Helpers"
         SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
         if SalesInvoiceLine.FindSet() then
             repeat
+                LineObject.Add('systemId', Format(SalesInvoiceLine.SystemId, 0, 4).ToLower());
                 LineObject.Add('lineNumber', SalesInvoiceLine."Line No.");
                 LineObject.Add('lineType', Format(SalesInvoiceLine.Type));
                 LineObject.Add('itemNumber', SalesInvoiceLine."No.");
@@ -191,6 +194,7 @@ codeunit 50153 "Sales Invoice Helpers"
     procedure GetLineDimensions(DimensionSetId: Integer; RequestedDimensions: JsonArray): JsonArray
     var
         DimensionSetEntry: Record "Dimension Set Entry";
+        Dim: Record Dimension;
         DimensionArray: JsonArray;
         DimensionObject: JsonObject;
     begin
@@ -206,8 +210,17 @@ codeunit 50153 "Sales Invoice Helpers"
                         Clear(DimensionObject);
                         DimensionObject.Add('code', DimensionSetEntry."Dimension Code");
                         DimensionObject.Add('value', DimensionSetEntry."Dimension Value Code");
+                        if Dim.Get(DimensionSetEntry."Dimension Code") then
+                            DimensionObject.Add('dimensionId', Format(Dim.SystemId, 0, 4).ToLower());
                         DimensionArray.Add(DimensionObject);
                     end;
+                end else begin
+                    Clear(DimensionObject);
+                    DimensionObject.Add('code', DimensionSetEntry."Dimension Code");
+                    DimensionObject.Add('value', DimensionSetEntry."Dimension Value Code");
+                    if Dim.Get(DimensionSetEntry."Dimension Code") then
+                        DimensionObject.Add('dimensionId', Format(Dim.SystemId, 0, 4).ToLower());
+                    DimensionArray.Add(DimensionObject);
                 end;
             until DimensionSetEntry.Next() = 0;
 
@@ -222,6 +235,7 @@ codeunit 50153 "Sales Invoice Helpers"
         SalesHeader: Record "Sales Header";
         SalesInvoiceHeader: Record "Sales Invoice Header";
         DimensionSetEntry: Record "Dimension Set Entry";
+        Dim: Record Dimension;
         DimensionSetId: Integer;
         DimToken: JsonToken;
         DimensionArray: JsonArray;
@@ -251,12 +265,16 @@ codeunit 50153 "Sales Invoice Helpers"
                         Clear(DimensionObject);
                         DimensionObject.Add('code', DimensionSetEntry."Dimension Code");
                         DimensionObject.Add('value', DimensionSetEntry."Dimension Value Code");
+                        if Dim.Get(DimensionSetEntry."Dimension Code") then
+                            DimensionObject.Add('dimensionId', Format(Dim.SystemId, 0, 4).ToLower());
                         DimensionArray.Add(DimensionObject);
                     end;
                 end else begin
                     Clear(DimensionObject);
                     DimensionObject.Add('code', DimensionSetEntry."Dimension Code");
                     DimensionObject.Add('value', DimensionSetEntry."Dimension Value Code");
+                    if Dim.Get(DimensionSetEntry."Dimension Code") then
+                        DimensionObject.Add('dimensionId', Format(Dim.SystemId, 0, 4).ToLower());
                     DimensionArray.Add(DimensionObject);
                 end;
             until DimensionSetEntry.Next() = 0;
