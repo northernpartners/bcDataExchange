@@ -14,7 +14,7 @@ codeunit 50152 "Sales Invoice Handler"
     /// Supported actions: getDraftDetails, getPostedDetails, createDraft.
     /// </summary>
     [ServiceEnabled]
-    procedure ProcessInvoice(requestBody: Text): Text
+    procedure dxSalesInvoice(requestBody: Text): Text
     var
         InObj: JsonObject;
     begin

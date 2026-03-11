@@ -5,7 +5,7 @@ Query unposted (draft) sales invoices from Business Central via a read-only ODat
 ## Endpoint Configuration
 
 **Web Service ID:** Query 50254 "Draft Invoices"  
-**Service Name:** `draftInvoices`  
+**Service Name:** `dxDraftInvoices`  
 **HTTP Method:** GET  
 **Protocol:** OData V4  
 **Access Level:** Read-Only  
@@ -15,7 +15,7 @@ Query unposted (draft) sales invoices from Business Central via a read-only ODat
 
 **Base URL:**
 ```
-[BC Environment]/ODataV4/Company('{company-id}')/draftInvoices
+[BC Environment]/ODataV4/Company('{company-id}')/dxDraftInvoices
 ```
 
 **Headers:**
@@ -55,7 +55,7 @@ These fields are available for filtering but are not returned in the response:
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices
 ```
 
 **Response:**
@@ -96,7 +96,7 @@ GET /ODataV4/Company('{company-id}')/draftInvoices
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices?$filter=invoiceNumber eq 'SI-1001'
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices?$filter=invoiceNumber eq 'SI-1001'
 ```
 
 **Response:**
@@ -124,35 +124,35 @@ GET /ODataV4/Company('{company-id}')/draftInvoices?$filter=invoiceNumber eq 'SI-
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices?$filter=customerId eq 'C00100'
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices?$filter=customerId eq 'C00100'
 ```
 
 ### 4. Filter by Customer Name (Substring)
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices?$filter=contains(customerName, 'Nordic')
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices?$filter=contains(customerName, 'Nordic')
 ```
 
 ### 5. Filter by Due Date Range
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices?$filter=dueDate ge 2026-03-01 and dueDate le 2026-03-31
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices?$filter=dueDate ge 2026-03-01 and dueDate le 2026-03-31
 ```
 
 ### 6. Sort by Amount (Descending)
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices?$orderby=amount desc
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices?$orderby=amount desc
 ```
 
 ### 7. Paginated Results
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/draftInvoices?$top=25&$skip=0
+GET /ODataV4/Company('{company-id}')/dxDraftInvoices?$top=25&$skip=0
 ```
 
 ## OData Standard Operators

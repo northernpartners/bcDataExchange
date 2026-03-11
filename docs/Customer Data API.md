@@ -5,7 +5,7 @@ Query and filter Business Central customer records via a read-only OData V4 API.
 ## Endpoint Configuration
 
 **Web Service ID:** Query 50250 "Customers"  
-**Service Name:** `queryCustomers`  
+**Service Name:** `dxCustomers`  
 **HTTP Method:** GET  
 **Protocol:** OData V4  
 **Access Level:** Read-Only  
@@ -15,7 +15,7 @@ Query and filter Business Central customer records via a read-only OData V4 API.
 
 **Base URL:**
 ```
-[BC Environment]/ODataV4/Company('{company-id}')/customers
+[BC Environment]/ODataV4/Company('{company-id}')/dxCustomers
 ```
 
 **Headers:**
@@ -40,7 +40,7 @@ Authorization: Bearer [auth-token]
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers
+GET /ODataV4/Company('{company-id}')/dxCustomers
 ```
 
 **Response:**
@@ -69,7 +69,7 @@ GET /ODataV4/Company('{company-id}')/customers
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=customerNo eq 'CUST-001'
+GET /ODataV4/Company('{company-id}')/dxCustomers?$filter=customerNo eq 'CUST-001'
 ```
 
 **Response:**
@@ -91,7 +91,7 @@ GET /ODataV4/Company('{company-id}')/customers?$filter=customerNo eq 'CUST-001'
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=contains(customerName, 'ABC')
+GET /ODataV4/Company('{company-id}')/dxCustomers?$filter=contains(customerName, 'ABC')
 ```
 
 **Response:**
@@ -112,40 +112,40 @@ GET /ODataV4/Company('{company-id}')/customers?$filter=contains(customerName, 'A
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=vatRegistrationNumber eq 'DK12345678'
+GET /ODataV4/Company('{company-id}')/dxCustomers?$filter=vatRegistrationNumber eq 'DK12345678'
 ```
 
 ### 5. Filter by Registration Number
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=registrationNumber eq 'REG123456'
+GET /ODataV4/Company('{company-id}')/dxCustomers?$filter=registrationNumber eq 'REG123456'
 ```
 
 ### 6. Pagination with $top and $skip
 
 **Request (Get 50 records, skip first 100):**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$top=50&$skip=100
+GET /ODataV4/Company('{company-id}')/dxCustomers?$top=50&$skip=100
 ```
 
 ### 7. Sorting and Ordering
 
 **Request (Sort by customer name, ascending):**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$orderby=customerName asc
+GET /ODataV4/Company('{company-id}')/dxCustomers?$orderby=customerName asc
 ```
 
 **Request (Sort by customer name, descending):**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$orderby=customerName desc
+GET /ODataV4/Company('{company-id}')/dxCustomers?$orderby=customerName desc
 ```
 
 ### 8. Combined Filter, Sort, and Pagination
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customers?$filter=contains(customerName, 'Corp')&$orderby=customerName asc&$top=25&$skip=0
+GET /ODataV4/Company('{company-id}')/dxCustomers?$filter=contains(customerName, 'Corp')&$orderby=customerName asc&$top=25&$skip=0
 ```
 
 ## OData Standard Operators
@@ -178,7 +178,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 ## Endpoint Configuration
 
 **Web Service ID:** Query 50251 "Customer Details"  
-**Service Name:** `customerDetails`  
+**Service Name:** `dxCustomerDetails`  
 **HTTP Method:** GET  
 **Protocol:** OData V4  
 **Access Level:** Read-Only  
@@ -188,7 +188,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 
 **Base URL:**
 ```
-[BC Environment]/ODataV4/Company('{company-id}')/customerDetails
+[BC Environment]/ODataV4/Company('{company-id}')/dxCustomerDetails
 ```
 
 ## Exposed Fields
@@ -237,7 +237,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=customerNo eq 'CUST-9001'
+GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=customerNo eq 'CUST-9001'
 ```
 
 **Response:**
@@ -272,35 +272,35 @@ GET /ODataV4/Company('{company-id}')/customerDetails?$filter=customerNo eq 'CUST
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=contains(customerName, 'Kintech')
+GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=contains(customerName, 'Kintech')
 ```
 
 ### 3. Filter by Country Code
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=countryCode eq 'GB'
+GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=countryCode eq 'GB'
 ```
 
 ### 4. Filter by Payment Terms
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=paymentTermsCode eq 'NET30'
+GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=paymentTermsCode eq 'NET30'
 ```
 
 ### 5. Pagination and Sorting
 
 **Request (Get 50 records, sorted by name):**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$top=50&$skip=0&$orderby=customerName asc
+GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$top=50&$skip=0&$orderby=customerName asc
 ```
 
 ### 6. Filter by Balance
 
 **Request (Customers with outstanding balance):**
 ```
-GET /ODataV4/Company('{company-id}')/customerDetails?$filter=balance gt 0
+GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=balance gt 0
 ```
 
 ## Data Access

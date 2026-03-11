@@ -5,7 +5,7 @@ Create Business Central dimensions and dimension values programmatically via a R
 ## Endpoint Configuration
 
 **Web Service ID:** Codeunit 50151 "Dimension Handler"  
-**Service Name:** `createDimensions`  
+**Service Name:** `dxCreateDimensions`  
 **HTTP Method:** POST  
 **Protocol:** REST/JSON  
 **Authentication:** Business Central credentials required
@@ -14,7 +14,7 @@ Create Business Central dimensions and dimension values programmatically via a R
 
 **Base URL:**
 ```
-[BC Environment]/api/businesses([Company ID])/codeunits/createDimensions
+[BC Environment]/api/businesses([Company ID])/codeunits/dxCreateDimensions
 ```
 
 **Headers:**
@@ -113,7 +113,7 @@ Authorization: Bearer [auth-token]
 **Request:**
 ```bash
 curl -X POST \
-  https://[environment].dynamics.com/api/businesses([id])/codeunits/createDimensions \
+  https://[environment].dynamics.com/api/businesses([id])/codeunits/dxCreateDimensions \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer [token]' \
   -d '{
@@ -145,7 +145,7 @@ curl -X POST \
 **Request:**
 ```bash
 curl -X POST \
-  https://[environment].dynamics.com/api/businesses([id])/codeunits/createDimensions \
+  https://[environment].dynamics.com/api/businesses([id])/codeunits/dxCreateDimensions \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer [token]' \
   -d '{
@@ -177,7 +177,7 @@ curl -X POST \
 **Request:**
 ```bash
 curl -X POST \
-  https://[environment].dynamics.com/api/businesses([id])/codeunits/createDimensions \
+  https://[environment].dynamics.com/api/businesses([id])/codeunits/dxCreateDimensions \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer [token]' \
   -d '{

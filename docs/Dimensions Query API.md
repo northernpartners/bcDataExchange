@@ -5,7 +5,7 @@ Query and filter Business Central dimension groups (codes) via a read-only OData
 ## Endpoint Configuration
 
 **Web Service ID:** Query 50252 "Dimensions"  
-**Service Name:** `dimensions`  
+**Service Name:** `dxDimensions`  
 **HTTP Method:** GET  
 **Protocol:** OData V4  
 **Access Level:** Read-Only  
@@ -15,7 +15,7 @@ Query and filter Business Central dimension groups (codes) via a read-only OData
 
 **Base URL:**
 ```
-[BC Environment]/ODataV4/Company('{company-id}')/dimensions
+[BC Environment]/ODataV4/Company('{company-id}')/dxDimensions
 ```
 
 **Headers:**
@@ -38,7 +38,7 @@ Authorization: Bearer [auth-token]
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensions
+GET /ODataV4/Company('{company-id}')/dxDimensions
 ```
 
 **Response:**
@@ -65,7 +65,7 @@ GET /ODataV4/Company('{company-id}')/dimensions
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensions?$filter=dimensionCode eq 'DEPARTMENT'
+GET /ODataV4/Company('{company-id}')/dxDimensions?$filter=dimensionCode eq 'DEPARTMENT'
 ```
 
 **Response:**
@@ -84,7 +84,7 @@ GET /ODataV4/Company('{company-id}')/dimensions?$filter=dimensionCode eq 'DEPART
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensions?$filter=contains(dimensionName, 'Cost')
+GET /ODataV4/Company('{company-id}')/dxDimensions?$filter=contains(dimensionName, 'Cost')
 ```
 
 **Response:**
@@ -103,21 +103,21 @@ GET /ODataV4/Company('{company-id}')/dimensions?$filter=contains(dimensionName, 
 
 **Request (Get 50 dimensions, skip first 100):**
 ```
-GET /ODataV4/Company('{company-id}')/dimensions?$top=50&$skip=100
+GET /ODataV4/Company('{company-id}')/dxDimensions?$top=50&$skip=100
 ```
 
 ### 5. Sorting by Name
 
 **Request (List dimensions sorted by name):**
 ```
-GET /ODataV4/Company('{company-id}')/dimensions?$orderby=dimensionName asc
+GET /ODataV4/Company('{company-id}')/dxDimensions?$orderby=dimensionName asc
 ```
 
 ### 6. Combined Filter and Sort
 
 **Request (Find dimensions containing 'Project', sorted by name):**
 ```
-GET /ODataV4/Company('{company-id}')/dimensions?$filter=contains(dimensionName, 'Project')&$orderby=dimensionName asc&$top=25
+GET /ODataV4/Company('{company-id}')/dxDimensions?$filter=contains(dimensionName, 'Project')&$orderby=dimensionName asc&$top=25
 ```
 
 ## OData Standard Operators
@@ -138,7 +138,7 @@ GET /ODataV4/Company('{company-id}')/dimensions?$filter=contains(dimensionName, 
 Results are returned without a specific default sort order. Use `$orderby` parameter to sort:
 
 ```
-GET /ODataV4/Company('{company-id}')/dimensions?$orderby=dimensionCode asc
+GET /ODataV4/Company('{company-id}')/dxDimensions?$orderby=dimensionCode asc
 ```
 
 ## Implementation Details

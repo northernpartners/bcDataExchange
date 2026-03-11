@@ -5,7 +5,7 @@ Query dimension values across Business Central via a read-only OData V4 API. Fil
 ## Endpoint Configuration
 
 **Web Service ID:** Query 50253 "Dimension Values"  
-**Service Name:** `dimensionValues`  
+**Service Name:** `dxDimensionValues`  
 **HTTP Method:** GET  
 **Protocol:** OData V4  
 **Access Level:** Read-Only  
@@ -15,7 +15,7 @@ Query dimension values across Business Central via a read-only OData V4 API. Fil
 
 **Base URL:**
 ```
-[BC Environment]/ODataV4/Company('{company-id}')/dimensionValues
+[BC Environment]/ODataV4/Company('{company-id}')/dxDimensionValues
 ```
 
 **Headers:**
@@ -38,7 +38,7 @@ Authorization: Bearer [auth-token]
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'ACTPERIOD'
+GET /ODataV4/Company('{company-id}')/dxDimensionValues?$filter=dimensionCode eq 'ACTPERIOD'
 ```
 
 **Response:**
@@ -73,7 +73,7 @@ GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'A
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'CONTRACT' and valueCode eq 'PROJ-001'
+GET /ODataV4/Company('{company-id}')/dxDimensionValues?$filter=dimensionCode eq 'CONTRACT' and valueCode eq 'PROJ-001'
 ```
 
 **Response:**
@@ -93,7 +93,7 @@ GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'C
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'CONTRACT' and contains(valueName, 'Project')
+GET /ODataV4/Company('{company-id}')/dxDimensionValues?$filter=dimensionCode eq 'CONTRACT' and contains(valueName, 'Project')
 ```
 
 **Response:**
@@ -118,21 +118,21 @@ GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'C
 
 **Request (Get 50 values for a dimension, skip first 100):**
 ```
-GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'ACTPERIOD'&$top=50&$skip=100
+GET /ODataV4/Company('{company-id}')/dxDimensionValues?$filter=dimensionCode eq 'ACTPERIOD'&$top=50&$skip=100
 ```
 
 ### 5. Sort Dimension Values by Name
 
 **Request (List values for a dimension sorted alphabetically by name):**
 ```
-GET /ODataV4/Company('{company-id}')/dimensionValues?$filter=dimensionCode eq 'CONTRACT'&$orderby=valueName asc
+GET /ODataV4/Company('{company-id}')/dxDimensionValues?$filter=dimensionCode eq 'CONTRACT'&$orderby=valueName asc
 ```
 
 ### 6. Get All Values Across All Dimensions (Unfiltered)
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/dimensionValues
+GET /ODataV4/Company('{company-id}')/dxDimensionValues
 ```
 
 **Response:**

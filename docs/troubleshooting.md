@@ -23,7 +23,7 @@ Common issues and their solutions for the DataExchange extension.
      - Query 50250 "Customers"
 
 2. Verify correct endpoint URL format:
-   - For Dimension API: `[BC URL]/api/codeunits/createDimensions`
+   - For Dimension API: `[BC URL]/api/codeunits/dxCreateDimensions`
    - For Customer API: `[BC URL]/ODataV4/Company('[id]')/customers`
 
 3. Confirm extension installation:
@@ -325,4 +325,4 @@ This log shows:
 ---
 
 **Last Updated:** March 10, 2026  
-**Extension Version:** 1.0.0.13
+**Extension Version:** 1.0.1.2

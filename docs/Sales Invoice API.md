@@ -5,7 +5,7 @@ Process sales invoice operations via a RESTful JSON API. Supports retrieving det
 ## Endpoint Configuration
 
 **Web Service ID:** Codeunit 50152 "Sales Invoice Handler"  
-**Service Name:** `processInvoice`  
+**Service Name:** `dxSalesInvoice`  
 **HTTP Method:** POST  
 **Protocol:** REST/JSON  
 **Authentication:** Business Central credentials required
@@ -14,7 +14,7 @@ Process sales invoice operations via a RESTful JSON API. Supports retrieving det
 
 **Base URL:**
 ```
-[BC Environment]/api/businesses([Company ID])/codeunits/processInvoice
+[BC Environment]/api/businesses([Company ID])/codeunits/dxSalesInvoice
 ```
 
 **Headers:**

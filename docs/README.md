@@ -2,7 +2,7 @@
 
 A Business Central AL extension exposing data via web service APIs for external system integration.
 
-**Publisher:** Northern Partners ApS | **Platform:** Business Central 23.0+ | **Version:** 1.0.0.13
+**Publisher:** Northern Partners ApS | **Platform:** Business Central 23.0+ | **Version:** 1.0.1.2
 
 ---
 

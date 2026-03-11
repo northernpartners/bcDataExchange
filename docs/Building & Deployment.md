@@ -35,7 +35,7 @@ This creates the `.alpackages` folder with the latest symbol files.
 The compiled extension will be saved in the project root directory with the naming convention:
 
 ```
-Northern Partners ApS_DataExchange_1.0.0.13.app
+Northern Partners ApS_DataExchange_1.0.1.2.app
 ```
 
 The `.app` file is your deployment package.
@@ -84,7 +84,7 @@ For on-premises Business Central environments, follow your organization's AL dep
 3. Use PowerShell or your deployment tool to publish the extension:
    ```powershell
    Publish-NAVApp -ServerInstance [instance-name] `
-     -Path "Northern Partners ApS_DataExchange_1.0.0.13.app"
+     -Path "Northern Partners ApS_DataExchange_1.0.1.2.app"
    ```
 4. Sync and install the extension
 5. Configure web services as described in the setup guide

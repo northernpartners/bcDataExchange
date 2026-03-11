@@ -6,7 +6,7 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.0.13
+**Latest Version:** 1.0.1.2
 
 ---
 
@@ -16,14 +16,14 @@ The DataExchange extension exposes eight web service endpoints:
 
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
-| Codeunit | 50151 | createDimensions | POST | Create dimensions and dimension values |
-| Codeunit | 50152 | processInvoice | POST | Sales invoice operations (details, create with lines & dimensions) |
-| Query | 50250 | queryCustomers | GET | Query and filter customer data (core fields) |
-| Query | 50251 | customerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
-| Query | 50252 | dimensions | GET | Query dimension groups/codes |
-| Query | 50253 | dimensionValues | GET | Query dimension values filtered by dimension group |
-| Query | 50254 | draftInvoices | GET | Query draft sales invoices |
-| Query | 50255 | postedInvoices | GET | Query posted sales invoices |
+| Codeunit | 50151 | dxCreateDimensions | POST | Create dimensions and dimension values |
+| Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (details, create with lines & dimensions) |
+| Query | 50250 | dxCustomers | GET | Query and filter customer data (core fields) |
+| Query | 50251 | dxCustomerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
+| Query | 50252 | dxDimensions | GET | Query dimension groups/codes |
+| Query | 50253 | dxDimensionValues | GET | Query dimension values filtered by dimension group |
+| Query | 50254 | dxDraftInvoices | GET | Query draft sales invoices |
+| Query | 50255 | dxPostedInvoices | GET | Query posted sales invoices |
 
 ### Building the Extension
 
@@ -35,14 +35,14 @@ The DataExchange extension exposes eight web service endpoints:
 
 1. Search "Web Services" in Business Central
 2. Add new services:
-   - **createDimensions:** Codeunit 50151 "Dimension Handler"
-   - **processInvoice:** Codeunit 50152 "Sales Invoice Handler"
-   - **queryCustomers:** Query 50250 "Customers"
-   - **customerDetails:** Query 50251 "Customer Details"
-   - **dimensions:** Query 50252 "Dimensions"
-   - **dimensionValues:** Query 50253 "Dimension Values"
-   - **draftInvoices:** Query 50254 "Draft Invoices"
-   - **postedInvoices:** Query 50255 "Posted Invoices"
+   - **dxCreateDimensions:** Codeunit 50151 "Dimension Handler"
+   - **dxSalesInvoice:** Codeunit 50152 "Sales Invoice Handler"
+   - **dxCustomers:** Query 50250 "Customers"
+   - **dxCustomerDetails:** Query 50251 "Customer Details"
+   - **dxDimensions:** Query 50252 "Dimensions"
+   - **dxDimensionValues:** Query 50253 "Dimension Values"
+   - **dxDraftInvoices:** Query 50254 "Draft Invoices"
+   - **dxPostedInvoices:** Query 50255 "Posted Invoices"
 3. Publish and test
 
 ---

@@ -5,7 +5,7 @@ Query posted (finalized) sales invoices from Business Central via a read-only OD
 ## Endpoint Configuration
 
 **Web Service ID:** Query 50255 "Posted Invoices"  
-**Service Name:** `postedInvoices`  
+**Service Name:** `dxPostedInvoices`  
 **HTTP Method:** GET  
 **Protocol:** OData V4  
 **Access Level:** Read-Only  
@@ -15,7 +15,7 @@ Query posted (finalized) sales invoices from Business Central via a read-only OD
 
 **Base URL:**
 ```
-[BC Environment]/ODataV4/Company('{company-id}')/postedInvoices
+[BC Environment]/ODataV4/Company('{company-id}')/dxPostedInvoices
 ```
 
 **Headers:**
@@ -45,7 +45,7 @@ Authorization: Bearer [auth-token]
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices
 ```
 
 **Response:**
@@ -84,7 +84,7 @@ GET /ODataV4/Company('{company-id}')/postedInvoices
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$filter=invoiceNumber eq 'PSI-1001'
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$filter=invoiceNumber eq 'PSI-1001'
 ```
 
 **Response:**
@@ -111,42 +111,42 @@ GET /ODataV4/Company('{company-id}')/postedInvoices?$filter=invoiceNumber eq 'PS
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$filter=customerId eq 'C00100'
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$filter=customerId eq 'C00100'
 ```
 
 ### 4. Filter by Customer Name (Substring)
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$filter=contains(customerName, 'Nordic')
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$filter=contains(customerName, 'Nordic')
 ```
 
 ### 5. Filter by Due Date Range
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$filter=dueDate ge 2026-03-01 and dueDate le 2026-03-31
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$filter=dueDate ge 2026-03-01 and dueDate le 2026-03-31
 ```
 
 ### 6. Filter by Amount Range
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$filter=amount ge 10000 and amount le 50000
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$filter=amount ge 10000 and amount le 50000
 ```
 
 ### 7. Sort by Document Date (Most Recent First)
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$orderby=documentDate desc
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$orderby=documentDate desc
 ```
 
 ### 8. Paginated Results
 
 **Request:**
 ```
-GET /ODataV4/Company('{company-id}')/postedInvoices?$top=25&$skip=0
+GET /ODataV4/Company('{company-id}')/dxPostedInvoices?$top=25&$skip=0
 ```
 
 ## OData Standard Operators

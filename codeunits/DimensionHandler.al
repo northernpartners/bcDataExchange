@@ -1,7 +1,7 @@
 codeunit 50151 "Dimension Handler"
 {
     [ServiceEnabled]
-    procedure createDimensions(requestBody: Text): Text
+    procedure dxCreateDimensions(requestBody: Text): Text
     var
         InObj: JsonObject;
     begin

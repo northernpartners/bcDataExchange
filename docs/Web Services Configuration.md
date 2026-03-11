@@ -9,14 +9,14 @@ Configure the DataExchange extension web services in Business Central to enable 
 
 | Object Type | Object ID | Object Name | Service Name |
 |-------------|-----------|-------------|--------------|
-| Codeunit | 50151 | Dimension Handler | createDimensions |
-| Codeunit | 50152 | Sales Invoice Handler | processInvoice |
-| Query | 50250 | Customers | queryCustomers |
-| Query | 50251 | Customer Details | customerDetails |
-| Query | 50252 | Dimensions | dimensions |
-| Query | 50253 | Dimension Values | dimensionValues |
-| Query | 50254 | Draft Invoices | draftInvoices |
-| Query | 50255 | Posted Invoices | postedInvoices |
+| Codeunit | 50151 | Dimension Handler | dxCreateDimensions |
+| Codeunit | 50152 | Sales Invoice Handler | dxSalesInvoice |
+| Query | 50250 | Customers | dxCustomers |
+| Query | 50251 | Customer Details | dxCustomerDetails |
+| Query | 50252 | Dimensions | dxDimensions |
+| Query | 50253 | Dimension Values | dxDimensionValues |
+| Query | 50254 | Draft Invoices | dxDraftInvoices |
+| Query | 50255 | Posted Invoices | dxPostedInvoices |
 
 ## Endpoint URLs
 
@@ -42,7 +42,7 @@ All endpoints require Business Central credentials:
 Test a Codeunit endpoint:
 ```bash
 curl -X POST \
-  'https://{environment}.dynamics.com/api/businesses({id})/codeunits/createDimensions' \
+  'https://{environment}.dynamics.com/api/businesses({id})/codeunits/dxCreateDimensions' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer {token}' \
   -d '{"name": "TEST", "values": [{"code": "V1"}]}'
@@ -51,7 +51,7 @@ curl -X POST \
 Test a Query endpoint:
 ```bash
 curl -X GET \
-  'https://{environment}.dynamics.com/ODataV4/Company('\''{company-name}'\'')/queryCustomers?$top=1' \
+  'https://{environment}.dynamics.com/ODataV4/Company('\''{company-name}'\'')/dxCustomers?$top=1' \
   -H 'Authorization: Bearer {token}'
 ```
 
