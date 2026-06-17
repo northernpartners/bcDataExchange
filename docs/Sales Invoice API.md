@@ -2,6 +2,12 @@
 
 Process sales invoice operations via a RESTful JSON API. Supports retrieving detailed invoice data (with line items and dimensions) and creating draft invoices with optional line items.
 
+> **Deprecation Notice:** As of v1.0.1.5, the `getDraftDetails` and `getPostedDetails` actions are **deprecated** and will be removed in a future release. Use the new OData API Pages instead:
+> - Draft invoices: [DX Draft Invoice API](../pages/DraftInvoiceAPI.md) — GET `/api/np/dx/v1.0/.../dxDraftInvoices` with `$expand` support
+> - Posted invoices: [DX Posted Invoice API](../pages/PostedInvoiceAPI.md) — GET `/api/np/dx/v1.0/.../dxPostedInvoices` with `$expand` support
+> 
+> Only the `createDraft` action remains active in this CodeUnit endpoint.
+
 ## Endpoint Configuration
 
 **Web Service ID:** Codeunit 50152 "Sales Invoice Handler"  
@@ -38,6 +44,8 @@ Authorization: Bearer [auth-token]
 | `getDraftDetails` | Get full details of a draft invoice including line items |
 | `getPostedDetails` | Get full details of a posted invoice including line items |
 | `createDraft` | Create a new draft sales invoice with optional line items |
+
+> **Status:** `getDraftDetails` and `getPostedDetails` are **DEPRECATED** as of v1.0.1.5. Use OData API Pages instead. Only `createDraft` is actively maintained.
 
 ---
 

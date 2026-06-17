@@ -7,6 +7,7 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Target:** Cloud  
 **ID Range:** 50150-50299  
 **Latest Version:** 1.0.1.2
+**Latest Version:** 1.0.1.5
 
 ---
 
@@ -18,6 +19,10 @@ The DataExchange extension exposes eight web service endpoints:
 |--------|----|----|--------|----------|
 | Codeunit | 50151 | dxCreateDimensions | POST | Create dimensions and dimension values |
 | Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (details, create with lines & dimensions) |
+| Query | 50250 | dxCustomers | GET | Query and filter customer data (core fields) |
+| Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (create draft with lines & dimensions) |
+| Page | 50260 | dxDraftInvoices | GET | OData API for draft invoices with $expand support |
+| Page | 50262 | dxPostedInvoices | GET | OData API for posted invoices with $expand support |
 | Query | 50250 | dxCustomers | GET | Query and filter customer data (core fields) |
 | Query | 50251 | dxCustomerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
 | Query | 50252 | dxDimensions | GET | Query dimension groups/codes |
