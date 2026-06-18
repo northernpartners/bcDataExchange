@@ -11,7 +11,7 @@ codeunit 50152 "Sales Invoice Handler"
     /// <summary>
     /// POST endpoint for processing invoice operations.
     /// Accepts JSON with an "action" field to determine the operation.
-    /// Supported actions: getDraftDetails, getPostedDetails, createDraft.
+    /// Supported actions: createDraft.
     /// </summary>
     [ServiceEnabled]
     procedure dxSalesInvoice(requestBody: Text): Text
@@ -38,79 +38,11 @@ codeunit 50152 "Sales Invoice Handler"
         Action := ActionToken.AsValue().AsText();
 
         case Action of
-            'getDraftDetails':
-                exit(GetDraftInvoiceDetails(InObj));
-            'getPostedDetails':
-                exit(GetPostedInvoiceDetails(InObj));
             'createDraft':
                 exit(CreateDraftInvoice(InObj));
             else
                 exit(CreateErrorResponse('Unknown action: ' + Action));
         end;
-    end;
-
-    /// <summary>
-    /// Gets full details of a draft invoice including all line items and optional dimensions.
-    /// </summary>
-    local procedure GetDraftInvoiceDetails(InObj: JsonObject): Text
-    var
-        Helpers: Codeunit "Sales Invoice Helpers";
-        InvoiceIdToken: JsonToken;
-        DimensionsToken: JsonToken;
-        InvoiceId: Code[20];
-        SalesHeader: Record "Sales Header";
-        DimensionArray: JsonArray;
-    begin
-        if not InObj.Get('invoiceId', InvoiceIdToken) or not InvoiceIdToken.IsValue() then
-            exit(CreateErrorResponse('Missing or invalid "invoiceId" field.'));
-
-        InvoiceId := CopyStr(InvoiceIdToken.AsValue().AsText(), 1, MaxStrLen(InvoiceId));
-
-        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Invoice);
-        SalesHeader.SetRange("No.", InvoiceId);
-        SalesHeader.SetRange(Status, SalesHeader.Status::Open);
-
-        if not SalesHeader.FindFirst() then
-            exit(CreateErrorResponse('Invoice not found', 'The requested draft invoice does not exist.'));
-
-        // Extract optional dimensions array
-        if InObj.Get('dimensions', DimensionsToken) and DimensionsToken.IsArray() then
-            DimensionArray := DimensionsToken.AsArray()
-        else
-            Clear(DimensionArray);
-
-        exit(Helpers.CreateInvoiceDetailObject(SalesHeader, DimensionArray));
-    end;
-
-    /// <summary>
-    /// Gets full details of a posted invoice including all line items and optional dimensions.
-    /// </summary>
-    local procedure GetPostedInvoiceDetails(InObj: JsonObject): Text
-    var
-        Helpers: Codeunit "Sales Invoice Helpers";
-        InvoiceIdToken: JsonToken;
-        DimensionsToken: JsonToken;
-        InvoiceId: Code[20];
-        SalesInvoiceHeader: Record "Sales Invoice Header";
-        DimensionArray: JsonArray;
-    begin
-        if not InObj.Get('invoiceId', InvoiceIdToken) or not InvoiceIdToken.IsValue() then
-            exit(CreateErrorResponse('Missing or invalid "invoiceId" field.'));
-
-        InvoiceId := CopyStr(InvoiceIdToken.AsValue().AsText(), 1, MaxStrLen(InvoiceId));
-
-        SalesInvoiceHeader.SetRange("No.", InvoiceId);
-
-        if not SalesInvoiceHeader.FindFirst() then
-            exit(CreateErrorResponse('Invoice not found', 'The requested posted invoice does not exist.'));
-
-        // Extract optional dimensions array
-        if InObj.Get('dimensions', DimensionsToken) and DimensionsToken.IsArray() then
-            DimensionArray := DimensionsToken.AsArray()
-        else
-            Clear(DimensionArray);
-
-        exit(Helpers.CreatePostedInvoiceDetailObject(SalesInvoiceHeader, DimensionArray));
     end;
 
     /// <summary>

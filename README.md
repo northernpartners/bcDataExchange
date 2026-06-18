@@ -6,29 +6,38 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.1.2
-**Latest Version:** 1.0.1.5
+**Latest Version:** 1.0.1.6
 
 ---
 
 ## Quick Start
 
-The DataExchange extension exposes eight web service endpoints:
+For v1.0.1.6, define the following **required** rows in Business Central Web Services:
 
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
 | Codeunit | 50151 | dxCreateDimensions | POST | Create dimensions and dimension values |
-| Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (details, create with lines & dimensions) |
-| Query | 50250 | dxCustomers | GET | Query and filter customer data (core fields) |
-| Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (create draft with lines & dimensions) |
-| Page | 50260 | dxDraftInvoices | GET | OData API for draft invoices with $expand support |
-| Page | 50262 | dxPostedInvoices | GET | OData API for posted invoices with $expand support |
+| Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (`createDraft` only) |
 | Query | 50250 | dxCustomers | GET | Query and filter customer data (core fields) |
 | Query | 50251 | dxCustomerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
 | Query | 50252 | dxDimensions | GET | Query dimension groups/codes |
 | Query | 50253 | dxDimensionValues | GET | Query dimension values filtered by dimension group |
-| Query | 50254 | dxDraftInvoices | GET | Query draft sales invoices |
-| Query | 50255 | dxPostedInvoices | GET | Query posted sales invoices |
+
+Optional legacy compatibility rows (only keep if existing clients still call them):
+
+| Object | ID | Service Name | Method | Purpose |
+|--------|----|----|--------|----------|
+| Query | 50254 | dxDraftInvoices | GET | Legacy draft invoice query |
+| Query | 50255 | dxPostedInvoices | GET | Legacy posted invoice query |
+
+API Pages for invoice reads are available via `/api/np/dx/v1.0/...` and do not require manual Web Services rows:
+
+| API Page | ID | Entity Set | Notes |
+|---------|----|------------|-------|
+| DX Draft Invoice API | 50260 | dxDraftInvoices | Supports `$expand` for lines and dimensions |
+| DX Draft Invoice Line API | 50261 | dxDraftInvoiceLines | Used via `$expand` from headers |
+| DX Posted Invoice API | 50262 | dxPostedInvoices | Supports `$expand` for lines and dimensions |
+| DX Posted Invoice Line API | 50263 | dxPostedInvoiceLines | Used via `$expand` from headers |
 
 ### Building the Extension
 
@@ -39,16 +48,15 @@ The DataExchange extension exposes eight web service endpoints:
 ### Enabling Web Services
 
 1. Search "Web Services" in Business Central
-2. Add new services:
+2. Add required services:
    - **dxCreateDimensions:** Codeunit 50151 "Dimension Handler"
    - **dxSalesInvoice:** Codeunit 50152 "Sales Invoice Handler"
    - **dxCustomers:** Query 50250 "Customers"
    - **dxCustomerDetails:** Query 50251 "Customer Details"
    - **dxDimensions:** Query 50252 "Dimensions"
    - **dxDimensionValues:** Query 50253 "Dimension Values"
-   - **dxDraftInvoices:** Query 50254 "Draft Invoices"
-   - **dxPostedInvoices:** Query 50255 "Posted Invoices"
-3. Publish and test
+3. Optional: keep Query 50254/50255 only for legacy clients.
+4. Publish and test
 
 ---
 
@@ -76,10 +84,16 @@ DataExchange/
 │   ├── DimensionValuesQuery.al   # OData endpoint (50253)
 │   ├── DraftInvoicesQuery.al     # OData endpoint (50254)
 │   └── PostedInvoicesQuery.al    # OData endpoint (50255)
+├── pages/
+│   ├── DraftInvoiceAPI.al        # API page (50260)
+│   ├── DraftInvoiceLineAPI.al    # API page (50261)
+│   ├── PostedInvoiceAPI.al       # API page (50262)
+│   ├── PostedInvoiceLineAPI.al   # API page (50263)
+│   └── InvoiceDimensionAPI.al    # API page (50264)
 └── .vscode/                      # VS Code configuration
 ```
 
 ---
 
-**Last Updated:** March 10, 2026  
+**Last Updated:** June 18, 2026  
 **Published by:** Northern Partners ApS

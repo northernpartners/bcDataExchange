@@ -1,12 +1,12 @@
 # Sales Invoice API
 
-Process sales invoice operations via a RESTful JSON API. Supports retrieving detailed invoice data (with line items and dimensions) and creating draft invoices with optional line items.
+Process sales invoice operations via a RESTful JSON API. In v1.0.1.6 this endpoint supports creating draft invoices only.
 
-> **Deprecation Notice:** As of v1.0.1.5, the `getDraftDetails` and `getPostedDetails` actions are **deprecated** and will be removed in a future release. Use the new OData API Pages instead:
-> - Draft invoices: [DX Draft Invoice API](../pages/DraftInvoiceAPI.md) — GET `/api/np/dx/v1.0/.../dxDraftInvoices` with `$expand` support
-> - Posted invoices: [DX Posted Invoice API](../pages/PostedInvoiceAPI.md) — GET `/api/np/dx/v1.0/.../dxPostedInvoices` with `$expand` support
-> 
-> Only the `createDraft` action remains active in this CodeUnit endpoint.
+> **Change Notice:** As of v1.0.1.6, `getDraftDetails` and `getPostedDetails` have been removed from this endpoint. Use OData API Pages for reads:
+> - Draft invoices: GET `/api/np/dx/v1.0/.../dxDraftInvoices` with `$expand`
+> - Posted invoices: GET `/api/np/dx/v1.0/.../dxPostedInvoices` with `$expand`
+>
+> This CodeUnit endpoint now supports `createDraft` only.
 
 ## Endpoint Configuration
 
@@ -41,189 +41,17 @@ Authorization: Bearer [auth-token]
 
 | Action | Description |
 |--------|-------------|
-| `getDraftDetails` | Get full details of a draft invoice including line items |
-| `getPostedDetails` | Get full details of a posted invoice including line items |
 | `createDraft` | Create a new draft sales invoice with optional line items |
 
-> **Status:** `getDraftDetails` and `getPostedDetails` are **DEPRECATED** as of v1.0.1.5. Use OData API Pages instead. Only `createDraft` is actively maintained.
+> **Status:** `getDraftDetails` and `getPostedDetails` are removed in v1.0.1.6. Use API Page endpoints `dxDraftInvoices` and `dxPostedInvoices` for invoice reads.
 
 ---
 
-## Action: getDraftDetails
+## Migration From Removed Actions
 
-Retrieves complete details of a draft (unposted) invoice, including all line items with quantities/prices. Optionally includes specific dimension values for line-level and header-level dimensions.
-
-### Request
-
-```json
-{
-  "action": "getDraftDetails",
-  "invoiceId": "SI-1001",
-  "dimensions": ["ACTPERIOD", "CONTRACT"]
-}
-```
-
-### Request Parameters
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `action` | Text | Yes | Must be `getDraftDetails` |
-| `invoiceId` | Code[20] | Yes | Draft invoice number |
-| `dimensions` | Array | No | Array of dimension codes to include in the response. If omitted, dimensions are not returned. |
-
-### Response
-
-```json
-{
-  "systemId": "d4e5f6a7-b8c9-0123-defg-hijklmnopqrs",
-  "invoiceNumber": "SI-1001",
-  "customerName": "Example Company Ltd.",
-  "customerId": "C00100",
-  "amount": 12500.00,
-  "amountExcludingVat": 10000.00,
-  "vat": 2500.00,
-  "dueDate": "2026-04-15",
-  "documentDate": "2026-03-09",
-  "status": "Open",
-  "description": "March services",
-  "currencyCode": "DKK",
-  "paymentTermsCode": "NET30",
-  "pdfUrl": "",
-  "lines": [
-    {
-      "systemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      "lineNumber": 10000,
-      "lineType": "Item",
-      "itemNumber": "ITEM-001",
-      "description": "Consulting services - March",
-      "quantity": 10,
-      "unitOfMeasureCode": "HOUR",
-      "unitPrice": 1000.00,
-      "lineAmount": 10000.00,
-      "lineDimensions": [
-        { "code": "ACTPERIOD", "value": "2026-Q1", "dimensionId": "a1b2c3d4-0000-0000-0000-000000000001" },
-        { "code": "CONTRACT", "value": "PROJ-001", "dimensionId": "a1b2c3d4-0000-0000-0000-000000000002" }
-      ]
-    }
-  ],
-  "dimensions": [
-    { "code": "ACTPERIOD", "value": "2026-Q1", "dimensionId": "a1b2c3d4-0000-0000-0000-000000000001" },
-    { "code": "CONTRACT", "value": "PROJ-001", "dimensionId": "a1b2c3d4-0000-0000-0000-000000000002" }
-  ]
-}
-```
-
-### Response Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `systemId` | GUID | Unique system identifier for the invoice (lowercase format) |
-| `invoiceNumber` | Code[20] | Invoice number |
-| `customerName` | Text | Bill-to customer name |
-| `customerId` | Code[20] | Bill-to customer number |
-| `amount` | Decimal | Total amount including VAT |
-| `amountExcludingVat` | Decimal | Total amount excluding VAT |
-| `vat` | Decimal | VAT amount (amount - amountExcludingVat) |
-| `dueDate` | Text | Due date in ISO 8601 format (YYYY-MM-DD) |
-| `documentDate` | Text | Document date in ISO 8601 format |
-| `status` | Text | Invoice status (Open, Released) |
-| `description` | Text | Your Reference field |
-| `currencyCode` | Code[10] | Currency code |
-| `paymentTermsCode` | Code[10] | Payment terms code |
-| `pdfUrl` | Text | Empty for draft invoices |
-| `lines` | Array | Invoice line items (see below) |
-| `dimensions` | Array | Header dimensions (only if requested) |
-
-### Line Item Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `systemId` | GUID | Unique system identifier for the line (lowercase format) |
-| `lineNumber` | Integer | Line number |
-| `lineType` | Text | Line type (Item, G/L Account, Resource, etc.) |
-| `itemNumber` | Code[20] | Item/account number |
-| `description` | Text | Line description |
-| `quantity` | Decimal | Quantity |
-| `unitOfMeasureCode` | Code[10] | Unit of measure |
-| `unitPrice` | Decimal | Unit price |
-| `lineAmount` | Decimal | Total line amount |
-| `lineDimensions` | Array | Line-level dimensions (only if requested) |
-
-### Dimension Object Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `code` | Code[20] | Dimension code (e.g. ACTPERIOD, CONTRACT) |
-| `value` | Code[20] | Dimension value code |
-| `dimensionId` | GUID | Dimension record SystemId — use for Standard API PATCH/POST operations |
-
----
-
-## Action: getPostedDetails
-
-Retrieves complete details of a posted (finalized) invoice, including all line items. Optionally includes specific dimension values. Includes a PDF download URL.
-
-### Request
-
-```json
-{
-  "action": "getPostedDetails",
-  "invoiceId": "PSI-1001",
-  "dimensions": ["ACTPERIOD"]
-}
-```
-
-### Request Parameters
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `action` | Text | Yes | Must be `getPostedDetails` |
-| `invoiceId` | Code[20] | Yes | Posted invoice number |
-| `dimensions` | Array | No | Array of dimension codes to include |
-
-### Response
-
-```json
-{
-  "systemId": "e5f6a7b8-c9d0-1234-efgh-ijklmnopqrst",
-  "invoiceNumber": "PSI-1001",
-  "customerName": "Example Company Ltd.",
-  "customerId": "C00100",
-  "amount": 12500.00,
-  "amountExcludingVat": 10000.00,
-  "vat": 2500.00,
-  "dueDate": "2026-03-15",
-  "documentDate": "2026-02-15",
-  "status": "Released",
-  "description": "February services",
-  "currencyCode": "DKK",
-  "paymentTermsCode": "NET30",
-  "pdfUrl": "SalesInvoices/SalesInvoiceDocument/PSI-1001",
-  "lines": [
-    {
-      "systemId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-      "lineNumber": 10000,
-      "lineType": "Item",
-      "itemNumber": "ITEM-001",
-      "description": "Consulting services - February",
-      "quantity": 8,
-      "unitOfMeasureCode": "HOUR",
-      "unitPrice": 1250.00,
-      "lineAmount": 10000.00,
-      "lineDimensions": [
-        { "code": "ACTPERIOD", "value": "2026-Q1", "dimensionId": "a1b2c3d4-0000-0000-0000-000000000001" }
-      ]
-    }
-  ],
-  "dimensions": [
-    { "code": "ACTPERIOD", "value": "2026-Q1", "dimensionId": "a1b2c3d4-0000-0000-0000-000000000001" }
-  ]
-}
-```
-
-The response structure is identical to `getDraftDetails` except:
-- `status` is always `Released`
-- `pdfUrl` contains the PDF download URL path
+- `getDraftDetails` -> `GET /api/np/dx/v1.0/.../dxDraftInvoices?$expand=dxDraftInvoiceLines($expand=dxInvoiceDimensions),dxDraftInvoiceDimensions`
+- `getPostedDetails` -> `GET /api/np/dx/v1.0/.../dxPostedInvoices?$expand=dxPostedInvoiceLines($expand=dxInvoiceDimensions),dxPostedInvoiceDimensions`
+- `dxDraftInvoiceLines` and `dxPostedInvoiceLines` are returned through `$expand` and do not need separate Web Services rows.
 
 ---
 
@@ -442,10 +270,8 @@ Dimensions are assigned via the BC Standard API v2.0 `dimensionSetLines` resourc
 - **Line Creation:** When `lines` are provided in `createDraft`, lines are numbered starting at 10000 with 10000 increments. `lineType` is required.
 - **Error Handling:** Line validation errors are caught and returned as structured JSON identifying the failing line number
 - **Default Dimensions:** `createDraft` returns all default dimensions auto-applied by BC (both header and per-line), including `dimensionId` GUIDs
-- **Dimension Filtering:** When requesting details via `getDraftDetails`/`getPostedDetails`, pass specific dimension codes in the `dimensions` array to filter; if omitted, no dimensions are returned
 - **System IDs:** Invoice and line items include `systemId` (GUID) for cross-referencing with the BC Standard API v2.0
 - **Date Format:** All dates use ISO 8601 (YYYY-MM-DD) format
-- **PDF URL:** Posted invoices include a `pdfUrl` field; draft invoices return an empty string
 
 ## Related Endpoints
 
