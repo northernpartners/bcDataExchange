@@ -22,6 +22,10 @@ query 50250 "Customers"
             {
                 Caption = 'VAT Registration Number';
             }
+            column(countryCode; "Country/Region Code")
+            {
+                Caption = 'Country/Region Code';
+            }
             column(registrationNumber; "Registration Number")
             {
                 Caption = 'Registration Number';

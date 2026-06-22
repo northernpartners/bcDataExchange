@@ -32,6 +32,7 @@ Authorization: Bearer [auth-token]
 | Name | customerName | Text | 100 | Customer display name |
 | Last Date Modified | lastDateModified | DateTime | — | Last modification timestamp |
 | VAT Registration No. | vatRegistrationNumber | Text | 20 | Customer VAT registration number |
+| Country/Region Code | countryCode | Code | 10 | Country/Region code (enables VAT number validation without prefix) |
 | Registration Number | registrationNumber | Text | 20 | Company registration number |
 
 ## Query Operations
@@ -51,14 +52,16 @@ GET /ODataV4/Company('{company-id}')/dxCustomers
       "customerNo": "CUST-001",
       "customerName": "ABC Corporation",
       "lastDateModified": "2026-03-05T10:30:00Z",
-      "vatRegistrationNumber": "DK12345678",
+      "vatRegistrationNumber": "12345678",
+      "countryCode": "DK",
       "registrationNumber": "REG123456"
     },
     {
       "customerNo": "CUST-002",
       "customerName": "XYZ International",
       "lastDateModified": "2026-02-28T14:15:00Z",
-      "vatRegistrationNumber": "DK87654321",
+      "vatRegistrationNumber": "87654321",
+      "countryCode": "DE",
       "registrationNumber": "REG654321"
     }
   ]
@@ -80,7 +83,8 @@ GET /ODataV4/Company('{company-id}')/dxCustomers?$filter=customerNo eq 'CUST-001
       "customerNo": "CUST-001",
       "customerName": "ABC Corporation",
       "lastDateModified": "2026-03-05T10:30:00Z",
-      "vatRegistrationNumber": "DK12345678",
+      "vatRegistrationNumber": "12345678",
+      "countryCode": "DK",
       "registrationNumber": "REG123456"
     }
   ]
