@@ -75,6 +75,10 @@ query 50251 "Customer Details"
             {
                 Caption = 'Currency Code';
             }
+            column(customerPostingGroup; "Customer Posting Group")
+            {
+                Caption = 'Customer Posting Group';
+            }
             column(pricesIncludingVAT; "Prices Including VAT")
             {
                 Caption = 'Prices Including VAT';

@@ -1,8 +1,8 @@
 # Sales Invoice API
 
-Process sales invoice operations via a RESTful JSON API. In v1.0.1.6 this endpoint supports creating draft invoices only.
+Process sales invoice operations via a RESTful JSON API. In v1.0.1.9 this endpoint supports creating draft invoices only.
 
-> **Change Notice:** As of v1.0.1.6, `getDraftDetails` and `getPostedDetails` have been removed from this endpoint. Use OData API Pages for reads:
+> **Change Notice:** As of v1.0.1.9, `getDraftDetails` and `getPostedDetails` have been removed from this endpoint. Use OData API Pages for reads:
 > - Draft invoices: GET `/api/np/dx/v1.0/.../dxDraftInvoices` with `$expand`
 > - Posted invoices: GET `/api/np/dx/v1.0/.../dxPostedInvoices` with `$expand`
 >
@@ -43,7 +43,7 @@ Authorization: Bearer [auth-token]
 |--------|-------------|
 | `createDraft` | Create a new draft sales invoice with optional line items |
 
-> **Status:** `getDraftDetails` and `getPostedDetails` are removed in v1.0.1.6. Use API Page endpoints `dxDraftInvoices` and `dxPostedInvoices` for invoice reads.
+> **Status:** `getDraftDetails` and `getPostedDetails` are removed in v1.0.1.9. Use API Page endpoints `dxDraftInvoices` and `dxPostedInvoices` for invoice reads.
 
 ---
 

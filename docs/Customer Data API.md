@@ -227,6 +227,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 | VAT Registration No. | vatRegistrationNo | Text[20] | VAT registration identifier |
 | Registration Number | registrationNo | Text[20] | Company registration identifier |
 | Currency Code | currencyCode | Code[10] | Default currency for invoicing |
+| Customer Posting Group | customerPostingGroup | Code[20] | Default posting setup for customer ledger posting |
 | Prices Including VAT | pricesIncludingVAT | Boolean | Whether quoted prices include VAT |
 
 ### Payment Information
@@ -265,6 +266,7 @@ GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=customerNo eq 'CU
       "vatRegistrationNo": "US12345678",
       "registrationNo": "REG123456",
       "currencyCode": "USD",
+      "customerPostingGroup": "DOMESTIC",
       "pricesIncludingVAT": false,
       "paymentTermsCode": "NET30"
     }

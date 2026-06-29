@@ -35,8 +35,10 @@ This creates the `.alpackages` folder with the latest symbol files.
 The compiled extension will be saved in the project root directory with the naming convention:
 
 ```
-Northern Partners ApS_DataExchange_1.0.1.2.app
+Northern Partners ApS_DataExchange_<version-from-app.json>.app
 ```
+
+The package name is derived from `name`, `publisher`, and `version` in `app.json` unless you explicitly pass an `/out:` compiler argument.
 
 The `.app` file is your deployment package.
 
@@ -84,7 +86,7 @@ For on-premises Business Central environments, follow your organization's AL dep
 3. Use PowerShell or your deployment tool to publish the extension:
    ```powershell
    Publish-NAVApp -ServerInstance [instance-name] `
-     -Path "Northern Partners ApS_DataExchange_1.0.1.2.app"
+       -Path "Northern Partners ApS_DataExchange_1.0.1.9.app"
    ```
 4. Sync and install the extension
 5. Configure web services as described in the setup guide
@@ -97,7 +99,7 @@ For on-premises Business Central environments, follow your organization's AL dep
    - Edit `app.json`
    - Increment the version number:
      ```json
-     "version": "1.0.1.0"
+       "version": "1.0.1.10"
      ```
 
 2. **Make Code Changes**
@@ -107,7 +109,7 @@ For on-premises Business Central environments, follow your organization's AL dep
    - Follow the build steps above
    - New package will have updated version in filename:
      ```
-     Northern Partners ApS_DataExchange_1.0.1.0.app
+       Northern Partners ApS_DataExchange_1.0.1.10.app
      ```
 
 ### Uploading the Update
@@ -123,7 +125,7 @@ For on-premises Business Central environments, follow your organization's AL dep
 1. Use PowerShell with the `-Force` flag to overwrite:
    ```powershell
    Publish-NAVApp -ServerInstance [instance-name] `
-     -Path "Northern Partners ApS_DataExchange_1.0.1.0.app" `
+       -Path "Northern Partners ApS_DataExchange_1.0.1.10.app" `
      -Force
    ```
 

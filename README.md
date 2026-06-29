@@ -6,13 +6,13 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.1.6
+**Latest Version:** 1.0.1.9
 
 ---
 
 ## Quick Start
 
-For v1.0.1.6, define the following **required** rows in Business Central Web Services:
+For v1.0.1.9, define the following **required** rows in Business Central Web Services:
 
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
@@ -95,5 +95,5 @@ DataExchange/
 
 ---
 
-**Last Updated:** June 18, 2026  
+**Last Updated:** June 29, 2026  
 **Published by:** Northern Partners ApS

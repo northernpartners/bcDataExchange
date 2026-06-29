@@ -2,7 +2,7 @@
 
 Configure the DataExchange extension web services in Business Central to enable API access.
 
-Version scope: v1.0.1.6
+Version scope: v1.0.1.9
 
 ## Setup
 

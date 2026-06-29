@@ -325,4 +325,4 @@ This log shows:
 ---
 
 **Last Updated:** March 10, 2026  
-**Extension Version:** 1.0.1.2
+**Extension Version:** 1.0.1.9
