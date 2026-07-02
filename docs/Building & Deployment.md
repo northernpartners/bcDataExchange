@@ -99,7 +99,7 @@ For on-premises Business Central environments, follow your organization's AL dep
    - Edit `app.json`
    - Increment the version number:
      ```json
-       "version": "1.0.1.10"
+          "version": "1.0.1.11"
      ```
 
 2. **Make Code Changes**
@@ -109,7 +109,7 @@ For on-premises Business Central environments, follow your organization's AL dep
    - Follow the build steps above
    - New package will have updated version in filename:
      ```
-       Northern Partners ApS_DataExchange_1.0.1.10.app
+          Northern Partners ApS_DataExchange_1.0.1.11.app
      ```
 
 ### Uploading the Update
@@ -125,7 +125,7 @@ For on-premises Business Central environments, follow your organization's AL dep
 1. Use PowerShell with the `-Force` flag to overwrite:
    ```powershell
    Publish-NAVApp -ServerInstance [instance-name] `
-       -Path "Northern Partners ApS_DataExchange_1.0.1.10.app" `
+          -Path "Northern Partners ApS_DataExchange_1.0.1.11.app" `
      -Force
    ```
 

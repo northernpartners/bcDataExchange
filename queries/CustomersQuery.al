@@ -18,6 +18,10 @@ query 50250 "Customers"
             {
                 Caption = 'Last Date Modified';
             }
+            column(blocked; Blocked)
+            {
+                Caption = 'Blocked';
+            }
             column(vatRegistrationNumber; "VAT Registration No.")
             {
                 Caption = 'VAT Registration Number';
