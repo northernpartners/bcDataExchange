@@ -23,6 +23,10 @@ query 50251 "Customer Details"
             {
                 Caption = 'Balance (LCY)';
             }
+            column(blocked; Blocked)
+            {
+                Caption = 'Blocked';
+            }
 
             // Address & Contact
             column(address; Address)

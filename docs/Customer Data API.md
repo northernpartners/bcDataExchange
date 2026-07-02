@@ -205,6 +205,7 @@ Retrieve comprehensive customer data from Business Central including general inf
 | Name | customerName | Text[100] | Customer display name |
 | Last Date Modified | lastDateModified | DateTime | Last modification timestamp |
 | Balance (LCY) | balance | Decimal | Outstanding balance in local currency |
+| Blocked | blocked | Option | Customer blocked status (` `, `Ship`, `Invoice`, `All`) |
 
 ### Address & Contact Information
 
@@ -254,6 +255,7 @@ GET /ODataV4/Company('{company-id}')/dxCustomerDetails?$filter=customerNo eq 'CU
       "customerName": "Example Company Ltd.",
       "lastDateModified": "2026-03-05T10:30:00Z",
       "balance": 15000.00,
+      "blocked": " ",
       "address": "123 Main Street",
       "address2": "Suite 100",
       "countryCode": "US",

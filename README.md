@@ -6,20 +6,20 @@ A unified Business Central AL extension exposing data via web service APIs for e
 **Platform:** Business Central 23.0+ | Runtime: AL 11.0  
 **Target:** Cloud  
 **ID Range:** 50150-50299  
-**Latest Version:** 1.0.1.9
+**Latest Version:** 1.0.1.10
 
 ---
 
 ## Quick Start
 
-For v1.0.1.9, define the following **required** rows in Business Central Web Services:
+For v1.0.1.10, define the following **required** rows in Business Central Web Services:
 
 | Object | ID | Service Name | Method | Purpose |
 |--------|----|----|--------|----------|
 | Codeunit | 50151 | dxCreateDimensions | POST | Create dimensions and dimension values |
 | Codeunit | 50152 | dxSalesInvoice | POST | Sales invoice operations (`createDraft` only) |
 | Query | 50250 | dxCustomers | GET | Query and filter customer data (core fields) |
-| Query | 50251 | dxCustomerDetails | GET | Query comprehensive customer details with address/contact/invoicing |
+| Query | 50251 | dxCustomerDetails | GET | Query comprehensive customer details with general/address/contact/invoicing fields, including blocked |
 | Query | 50252 | dxDimensions | GET | Query dimension groups/codes |
 | Query | 50253 | dxDimensionValues | GET | Query dimension values filtered by dimension group |
 
@@ -95,5 +95,5 @@ DataExchange/
 
 ---
 
-**Last Updated:** June 29, 2026  
+**Last Updated:** July 2, 2026  
 **Published by:** Northern Partners ApS
